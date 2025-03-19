@@ -5,7 +5,7 @@ public class Fireball : MonoBehaviour
     [SerializeField] private Rigidbody2D _rb;
     private float speed;
     private int damage;
-    private Camera camera;
+    private Camera mainCamera;
     private GameObject player;
     private Vector3 mousePosition;
 
@@ -17,11 +17,11 @@ public class Fireball : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        speed = player.GetComponent<Player>().GetFireballSpeed();
-        damage = player.GetComponent<Player>().GetFireballDamage();
-        SetScale(player.GetComponent<Player>().GetFireballSize());
-        camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        mousePosition = camera.ScreenToWorldPoint(Input.mousePosition);
+        speed = player.GetComponent<Shooting>().GetFireballSpeed();
+        damage = player.GetComponent<Shooting>().GetFireballDamage();
+        SetScale(player.GetComponent<Shooting>().GetFireballSize());
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         Vector3 direction = mousePosition - transform.position;
         Vector3 rotation = transform.position - mousePosition;
         float z = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
@@ -35,9 +35,6 @@ public class Fireball : MonoBehaviour
         {
             Debug.Log("NEMICO COLPITO");
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 }

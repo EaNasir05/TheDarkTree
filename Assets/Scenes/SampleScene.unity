@@ -449,7 +449,8 @@ GameObject:
   - component: {fileID: 574134161}
   - component: {fileID: 574134159}
   - component: {fileID: 574134162}
-  - component: {fileID: 574134160}
+  - component: {fileID: 574134164}
+  - component: {fileID: 574134163}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -556,27 +557,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &574134160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 574134156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58ee4e73f65602f44bb2bcb825b5b0e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 5
-  fireballCooldown: 0.8
-  fireballDamage: 5
-  fireballSpeed: 10
-  fireballSize: 0.5
-  _rb: {fileID: 574134159}
-  _playerInput: {fileID: 574134162}
-  _fireballSpawnPoint: {fileID: 1408458430}
-  _fireBall: {fileID: 2222445912853152142, guid: 4001e243e4c15034095bce75f7c52161, type: 3}
 --- !u!61 &574134161
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -653,6 +633,39 @@ MonoBehaviour:
   m_DefaultActionMap: PC
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &574134163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574134156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fa8c18b74d033499a71468b2f17f4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fireball: {fileID: 2222445912853152142, guid: 4001e243e4c15034095bce75f7c52161, type: 3}
+  _fireballSpawnPoint: {fileID: 1408458430}
+  fireballCooldown: 0.8
+  fireballDamage: 5
+  fireballSpeed: 10
+  fireballSize: 0.5
+--- !u!114 &574134164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 574134156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf059faa9c97b2f49b0a71985f6f3d8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rb: {fileID: 574134159}
+  _playerInput: {fileID: 574134162}
+  movementSpeed: 5
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -978,7 +991,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1794735405}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!61 &747556537
 BoxCollider2D:
@@ -1210,7 +1223,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1794735405}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1542545255
 BoxCollider2D:
@@ -1288,7 +1301,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1794735405}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!61 &1602746349
 BoxCollider2D:
@@ -1364,7 +1377,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1542545254}
+  - {fileID: 1996736118}
+  - {fileID: 747556536}
+  - {fileID: 1602746348}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1996736117
@@ -1397,7 +1414,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1794735405}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1996736119
 BoxCollider2D:
@@ -1501,9 +1518,5 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 636509251}
   - {fileID: 574134158}
-  - {fileID: 1542545254}
-  - {fileID: 1996736118}
-  - {fileID: 747556536}
-  - {fileID: 1602746348}
   - {fileID: 1794735405}
   - {fileID: 1073299815}
