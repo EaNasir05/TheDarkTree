@@ -1,22 +1,29 @@
 using UnityEngine;
-using UnityEngine.Events;
 
-public class RootInteraction : MonoBehaviour
+public class CorpseInteraction : MonoBehaviour
 {
     private bool interactable;
-    public UnityEvent interaction;
 
     private void Start()
     {
         interactable = false;
-        interaction.AddListener(GameManager.instance.OnRootInteractionEvent);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && interactable)
         {
-            interaction.Invoke();
+            if (CorpseManager.instance.GetCorpse() == null)
+            {
+                Debug.Log("CADAVERE RACCATTATO");
+                CorpseManager.instance.SetCorpse(gameObject);
+                gameObject.GetComponent<Collider2D>().enabled = false;
+                interactable = false;
+            }
+            else
+            {
+                Debug.Log("NON PUOI RACCATTARE ALTRI CADAVERI");
+            }
         }
     }
 
