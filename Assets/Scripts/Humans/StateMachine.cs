@@ -6,10 +6,10 @@ public class StateMachine : MonoBehaviour
 
     public void Initialise()
     {
-        //ChangeState(new PatrolState());
+        ChangeState(new MovementState());
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (activeState != null)
         {
@@ -19,15 +19,11 @@ public class StateMachine : MonoBehaviour
 
     public void ChangeState(State newState)
     {
-        if (activeState != null)
-        {
-            activeState.Exit();
-        }
         activeState = newState;
         if (activeState != null)
         {
             activeState.stateMachine = this;
-            //activeState.knight = GetComponent<Knight>();
+            activeState.human = GetComponent<Human>();
             activeState.Enter();
         }
     }

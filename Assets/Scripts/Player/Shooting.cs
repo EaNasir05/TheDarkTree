@@ -11,6 +11,10 @@ public class Shooting : MonoBehaviour
     [SerializeField] private float fireballSize;
     private bool readyToFire;
 
+    public int GetFireballDamage() { return fireballDamage; }
+    public float GetFireballSpeed() { return fireballSpeed; }
+    public float GetFireballSize() { return fireballSize; }
+
     private void Start()
     {
         readyToFire = true;
@@ -22,21 +26,6 @@ public class Shooting : MonoBehaviour
         {
             StartCoroutine("Shoot");
         }
-    }
-
-    public int GetFireballDamage()
-    {
-        return fireballDamage;
-    }
-
-    public float GetFireballSpeed()
-    {
-        return fireballSpeed;
-    }
-
-    public float GetFireballSize()
-    {
-        return fireballSize;
     }
 
     private IEnumerator Shoot()

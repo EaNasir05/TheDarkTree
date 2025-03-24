@@ -14,10 +14,7 @@ public class CorpseManager : MonoBehaviour
         }
     }
 
-    public GameObject GetCorpse()
-    {
-        return corpse;
-    }
+    public GameObject GetCorpse() { return corpse; }
 
     public void SetCorpse(GameObject corpse)
     {

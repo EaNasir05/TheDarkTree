@@ -13,6 +13,11 @@ public class Movement : MonoBehaviour
         _moveAction = _playerInput.actions["Move"];
     }
 
+    private void Update()
+    {
+        //cambia direzione sprite PG se si muove lateralmente
+    }
+
     private void FixedUpdate()
     {
         _rb.linearVelocity = _moveAction.ReadValue<Vector2>() * movementSpeed;

@@ -33,7 +33,7 @@ public class Fireball : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<Knight>().DecreaseHealth(damage);
+            collision.gameObject.GetComponent<Human>().DecreaseHealth(damage);
         }
         Destroy(gameObject);
     }

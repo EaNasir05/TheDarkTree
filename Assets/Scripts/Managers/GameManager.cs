@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     private int level = 1;
     private int corpses = 0;
-    [SerializeField] private int[] milestones;
+    [SerializeField] private GameObject _tree;
+    [SerializeField] private int[] _milestones;
     private int[] trapsList = {1, 0, 0, 0};
     private GameObject currentRoot;
 
@@ -46,7 +47,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("SACRIFICIO EFFETTUATO");
         corpses++;
-        if (milestones[level-1] == corpses)
+        if (_milestones[level-1] == corpses)
         {
             UserInterfaceManager.instance.IncreaseLevel();
             level++;
