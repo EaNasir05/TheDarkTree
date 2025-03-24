@@ -1,10 +1,12 @@
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class MovementState : State
 {
+
     public override void Enter()
     {
-        Debug.Log("MOVEMENT STATE");
+        
     }
 
     public override void Perform()

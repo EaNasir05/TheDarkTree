@@ -55,6 +55,12 @@ public class Root : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             interactable = true;
+            /*
+            if (CorpseManager.instance.GetCorpse() != null || trap == null)
+            {
+                //cambia sprite
+            }
+            */
         }
     }
 
@@ -63,6 +69,7 @@ public class Root : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             interactable = false;
+            //cambia sprite
         }
     }
 }

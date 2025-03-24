@@ -13,25 +13,20 @@ public class CorpseInteraction : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && interactable)
         {
-            if (CorpseManager.instance.GetCorpse() == null)
-            {
-                Debug.Log("CADAVERE RACCATTATO");
-                CorpseManager.instance.SetCorpse(gameObject);
-                gameObject.GetComponent<Collider2D>().enabled = false;
-                interactable = false;
-            }
-            else
-            {
-                Debug.Log("NON PUOI RACCATTARE ALTRI CADAVERI");
-            }
+            Debug.Log("CADAVERE RACCATTATO");
+            CorpseManager.instance.SetCorpse(gameObject);
+            gameObject.GetComponent<Collider2D>().enabled = false;
+            interactable = false;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && CorpseManager.instance.GetCorpse() == null)
         {
+            Debug.Log("FICO");
             interactable = true;
+            //cambia sprite
         }
     }
 
@@ -40,6 +35,7 @@ public class CorpseInteraction : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             interactable = false;
+            //cambia sprite
         }
     }
 }
