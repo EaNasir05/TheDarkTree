@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class Flower : MonoBehaviour
+public class Slough : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<Human>().insideFlower = true;
+            collision.gameObject.GetComponent<Human>().ChangeMovementSpeed(-2);
         }
     }
 
@@ -14,7 +14,7 @@ public class Flower : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<Human>().insideFlower = false;
+            collision.gameObject.GetComponent<Human>().ChangeMovementSpeed(2);
         }
     }
 }

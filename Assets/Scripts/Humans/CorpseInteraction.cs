@@ -11,9 +11,8 @@ public class CorpseInteraction : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && interactable)
+        if (Input.GetKeyDown(KeyCode.E) && interactable && !GameManager.pause)
         {
-            Debug.Log("CADAVERE RACCATTATO");
             CorpseManager.instance.SetCorpse(gameObject);
             gameObject.GetComponent<Collider2D>().enabled = false;
             interactable = false;
@@ -24,7 +23,6 @@ public class CorpseInteraction : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && CorpseManager.instance.GetCorpse() == null)
         {
-            Debug.Log("FICO");
             interactable = true;
             //cambia sprite
         }

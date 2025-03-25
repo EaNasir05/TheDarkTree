@@ -20,6 +20,9 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb.linearVelocity = _moveAction.ReadValue<Vector2>() * movementSpeed;
+        if (!GameManager.pause && !GameManager.selectingTrap)
+        {
+            _rb.linearVelocity = _moveAction.ReadValue<Vector2>() * movementSpeed;
+        }
     }
 }

@@ -19,6 +19,8 @@ public class UserInterfaceManager : MonoBehaviour
             _trapsList.transform.GetChild(1).GetComponent<Image>().color = Color.gray;
             _trapsList.transform.GetChild(2).GetComponent<Image>().color = Color.gray;
             _trapsList.transform.GetChild(3).GetComponent<Image>().color = Color.gray;
+            _trapsList.transform.GetChild(4).GetComponent<Image>().color = Color.gray;
+            _trapsList.transform.GetChild(5).GetComponent<Image>().color = Color.gray;
         }
     }
 

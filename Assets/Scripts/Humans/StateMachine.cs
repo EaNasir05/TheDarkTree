@@ -3,6 +3,14 @@ using UnityEngine;
 public class StateMachine : MonoBehaviour
 {
     public State activeState;
+    private bool stunned;
+
+    public void SetStunned(bool value) { stunned = value; }
+
+    private void Awake()
+    {
+        stunned = false;
+    }
 
     public void Initialise()
     {
@@ -11,7 +19,7 @@ public class StateMachine : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (activeState != null)
+        if (activeState != null && !stunned && !GameManager.pause)
         {
             activeState.Perform();
         }

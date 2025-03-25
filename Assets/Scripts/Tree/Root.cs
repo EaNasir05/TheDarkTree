@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public class Root : MonoBehaviour
 {
     [SerializeField] private Transform _trapPlacement;
+    [SerializeField] private GameObject[] _trapsPrefabs;
     private GameObject trap;
     private bool interactable;
 
@@ -14,7 +15,7 @@ public class Root : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && interactable)
+        if (Input.GetKeyDown(KeyCode.E) && interactable && !GameManager.pause)
         {
             if (CorpseManager.instance.GetCorpse() != null)
             {
@@ -33,16 +34,22 @@ public class Root : MonoBehaviour
         switch (index)
         {
             case 0:
-                Debug.Log("FIORE PUTRIDO");
+                trap = Instantiate(_trapsPrefabs[0], _trapPlacement.position, Quaternion.identity);
                 break;
             case 1:
-                Debug.Log("ROVI SANGUINARI");
+                trap = Instantiate(_trapsPrefabs[1], _trapPlacement.position, Quaternion.identity);
                 break;
             case 2:
-                Debug.Log("MELMA OSCURA");
+                trap = Instantiate(_trapsPrefabs[2], _trapPlacement.position, Quaternion.identity);
                 break;
             case 3:
-                Debug.Log("BULBO ESPLOSIVO");
+                trap = Instantiate(_trapsPrefabs[3], _trapPlacement.position, Quaternion.identity);
+                break;
+            case 4:
+                trap = Instantiate(_trapsPrefabs[4], _trapPlacement.position, Quaternion.identity);
+                break;
+            case 5:
+                trap = Instantiate(_trapsPrefabs[5], _trapPlacement.position, Quaternion.identity);
                 break;
             default:
                 Debug.Log("CHE CAZZO HAI FATTO?");

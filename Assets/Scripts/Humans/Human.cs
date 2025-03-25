@@ -10,10 +10,8 @@ public class Human : MonoBehaviour
     [SerializeField] private float range;
     [SerializeField] private int power;
     [SerializeField] private Transform _tree;
-    private float flowerAttackCooldown;
-    private float sloughAttackCooldown;
-    public bool insideFlower;
-    public bool insideSlough;
+    private float bramblesAttackCooldown;
+    private bool insideBrambles;
 
     public int GetDamage() { return damage; }
     public float GetMovementSpeed() { return movementSpeed; }
@@ -21,41 +19,27 @@ public class Human : MonoBehaviour
     public float GetRange() { return range; }
     public int GetPower() { return power; }
     public Transform GetTree() { return _tree; }
+    public void ChangeMovementSpeed(float value) { movementSpeed += value; }
+    public void SetInsideBrambles(bool value) { insideBrambles = value; }
 
     private void Start()
     {
         //GetComponent<StateMachine>().Initialise();
-        /*flowerAttackCooldown = 0;
-        sloughAttackCooldown = 0;
-        insideFlower = false;
-        insideSlough = false;*/
+        bramblesAttackCooldown = 0;
+        insideBrambles = false;
     }
 
     private void Update()
     {
-        /*if (insideFlower)
+        if (insideBrambles && !GameManager.pause)
         {
-            flowerAttackCooldown += Time.deltaTime;
-            if (flowerAttackCooldown >= 1)
-            {
-                DecreaseHealth(2);
-                flowerAttackCooldown = 0;
-            }
-        }
-        if (insideSlough)
-        {
-            sloughAttackCooldown += Time.deltaTime;
-            if (sloughAttackCooldown >= 1)
+            bramblesAttackCooldown += Time.deltaTime;
+            if (bramblesAttackCooldown >= 1)
             {
                 DecreaseHealth(1);
-                sloughAttackCooldown = 0;
+                bramblesAttackCooldown = 0;
             }
-        }*/
-    }
-
-    public void ChangeMovementSpeed(float value)
-    {
-        movementSpeed += value;
+        }
     }
 
     public void DecreaseHealth(int damage)

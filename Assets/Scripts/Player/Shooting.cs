@@ -14,6 +14,9 @@ public class Shooting : MonoBehaviour
     public int GetFireballDamage() { return fireballDamage; }
     public float GetFireballSpeed() { return fireballSpeed; }
     public float GetFireballSize() { return fireballSize; }
+    public void ChangeFireballCooldown(float value) { fireballCooldown += value; }
+    public void ChangeFireballDamage(int value) { fireballDamage += value; }
+    public void ChangeFireballSize(float value) { fireballSize += value; }
 
     private void Start()
     {
@@ -22,7 +25,7 @@ public class Shooting : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !GameManager.pause && !GameManager.selectingTrap)
         {
             StartCoroutine("Shoot");
         }
