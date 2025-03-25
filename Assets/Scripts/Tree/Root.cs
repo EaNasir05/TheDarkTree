@@ -52,7 +52,7 @@ public class Root : MonoBehaviour
                 trap = Instantiate(_trapsPrefabs[5], _trapPlacement.position, Quaternion.identity);
                 break;
             default:
-                Debug.Log("CHE CAZZO HAI FATTO?");
+                Debug.Log("TRAPPOLA INESISTENTE");
                 break;
         }
     }

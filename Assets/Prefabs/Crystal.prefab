@@ -137,6 +137,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7492b9d0929f05e48b00565ab9bed57f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shootingSystem: {fileID: 0}
-  buffCooldown: 20
+  buffCooldown: 25
   buffDuration: 5

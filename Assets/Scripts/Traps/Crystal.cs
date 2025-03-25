@@ -7,6 +7,7 @@ public class Crystal : MonoBehaviour
     [SerializeField] private float buffCooldown;
     [SerializeField] private float buffDuration;
     private bool readyToBuff;
+    private bool buffEnded;
     private float timer;
 
     private void Start()
@@ -20,14 +21,22 @@ public class Crystal : MonoBehaviour
     {
         if (!readyToBuff && !GameManager.pause)
         {
-            if (timer >= buffCooldown)
+            timer += Time.deltaTime;
+            if (!buffEnded)
             {
-                readyToBuff = true;
-                timer = 0;
+                if (timer >= buffDuration)
+                {
+                    buffEnded = true;
+                    _shootingSystem.ChangeFireballDamage(-2);
+                }
             }
             else
             {
-                timer += Time.deltaTime;
+                if (timer >= buffCooldown)
+                {
+                    readyToBuff = true;
+                    timer = 0;
+                }
             }
         }
     }
@@ -36,15 +45,12 @@ public class Crystal : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Fireball"))
         {
-            StartCoroutine("Buff");
-            readyToBuff = false;
+            if (readyToBuff)
+            {
+                _shootingSystem.ChangeFireballDamage(2);
+                buffEnded = false;
+                readyToBuff = false;
+            }
         }
-    }
-
-    private IEnumerator Buff()
-    {
-        _shootingSystem.ChangeFireballDamage(2);
-        yield return new WaitForSeconds(buffDuration);
-        _shootingSystem.ChangeFireballDamage(-2);
     }
 }

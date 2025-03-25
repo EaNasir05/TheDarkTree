@@ -37,7 +37,14 @@ public class Shooting : MonoBehaviour
         {
             readyToFire = false;
             Instantiate(_fireball, _fireballSpawnPoint.position, Quaternion.identity);
-            yield return new WaitForSeconds(fireballCooldown);
+            if(fireballCooldown >= 0.05)
+            {
+                yield return new WaitForSeconds(fireballCooldown);
+            }
+            else
+            {
+                yield return new WaitForSeconds((float)0.05);
+            }
             readyToFire = true;
         }
     }

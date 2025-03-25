@@ -8,6 +8,8 @@ public class Movement : MonoBehaviour
     [SerializeField] private float movementSpeed;
     private InputAction _moveAction;
 
+    public void ChangeMovementSpeed(float value) { movementSpeed += value; }
+
     private void Start()
     {
         _moveAction = _playerInput.actions["Move"];

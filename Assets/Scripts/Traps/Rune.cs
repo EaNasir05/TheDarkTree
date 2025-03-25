@@ -6,7 +6,7 @@ public class Rune : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<Shooting>().ChangeFireballCooldown((float)-0.2);
+            collision.gameObject.GetComponent<Shooting>().ChangeFireballCooldown((float)-0.133);
         }
     }
 
@@ -14,7 +14,7 @@ public class Rune : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<Shooting>().ChangeFireballCooldown((float)0.2);
+            collision.gameObject.GetComponent<Shooting>().ChangeFireballCooldown((float)0.133);
         }
     }
 }
