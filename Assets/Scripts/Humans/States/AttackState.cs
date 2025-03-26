@@ -6,6 +6,7 @@ public class AttackState : State
 
     public override void Enter()
     {
+        human.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(0, 0);
         cooldown = human.GetAttackCooldown();
     }
 

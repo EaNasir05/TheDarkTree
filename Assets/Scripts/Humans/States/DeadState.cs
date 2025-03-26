@@ -7,7 +7,9 @@ public class DeadState : State
 
     public override void Enter()
     {
+        human.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(0, 0);
         timer = 0;
+        expiring = false;
     }
 
     public override void Perform()

@@ -10,6 +10,7 @@ public class Human : MonoBehaviour
     [SerializeField] private float range;
     [SerializeField] private int power;
     [SerializeField] private Transform _tree;
+    [SerializeField] private float avoidanceDistance;
     private float bramblesAttackCooldown;
     private bool insideBrambles;
 
@@ -19,12 +20,14 @@ public class Human : MonoBehaviour
     public float GetRange() { return range; }
     public int GetPower() { return power; }
     public Transform GetTree() { return _tree; }
+    public void SetTree(Transform tree) { _tree = tree; }
+    public float GetAvoidenceDistance() { return avoidanceDistance; }
     public void ChangeMovementSpeed(float value) { movementSpeed += value; }
     public void SetInsideBrambles(bool value) { insideBrambles = value; }
 
     private void Start()
     {
-        //GetComponent<StateMachine>().Initialise();
+        GetComponent<StateMachine>().Initialise();
         bramblesAttackCooldown = 0;
         insideBrambles = false;
     }

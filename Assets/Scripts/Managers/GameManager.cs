@@ -93,6 +93,7 @@ public class GameManager : MonoBehaviour
 
     public void endTrapSelection()
     {
+        Debug.Log("CHIUSO");
         UserInterfaceManager.instance.CloseTrapsList();
         selectingTrap = false;
     }
@@ -113,7 +114,7 @@ public class GameManager : MonoBehaviour
         switch (enhancement)
         {
             case 0:
-                _movementSystem.ChangeMovementSpeed(2);
+                _movementSystem.ChangeMovementSpeed((float)1.5);
                 break;
             case 1:
                 _shootingSystem.ChangeFireballCooldown((float)-0.133);
@@ -130,6 +131,10 @@ public class GameManager : MonoBehaviour
         }
         UserInterfaceManager.instance.CloseLevelUpEnhancements();
         pause = false;
+        if (selectingTrap)
+        {
+            selectingTrap = false;
+        }
     }
 
     private int[] GenerateTraps()
@@ -164,6 +169,7 @@ public class GameManager : MonoBehaviour
     {
         UserInterfaceManager.instance.IncreaseLevel();
         level++;
+        HumansGenerator.level++;
         pause = true;
         trapsGenerated = GenerateTraps();
         enhancementsGenerated = GenerateEnhancements();
