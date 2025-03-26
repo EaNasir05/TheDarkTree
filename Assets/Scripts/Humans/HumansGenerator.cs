@@ -62,13 +62,11 @@ public class HumansGenerator : MonoBehaviour
         int power = _hordesPower[level - 1];
         while (power > 0)
         {
-            Debug.Log(power);
             filtered = filterHumansByPower(power);
             int sel = Random.Range(0, filtered.Count);
-            power -= _humans[sel].GetPower();
-            selection.Add(sel);
+            power -= _humans[filtered[sel]].GetPower();
+            selection.Add(filtered[sel]);
         }
-        Debug.Log(power);
         return selection;
     }
 

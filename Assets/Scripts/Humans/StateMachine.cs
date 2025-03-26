@@ -19,9 +19,16 @@ public class StateMachine : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (activeState != null && !stunned && !GameManager.pause)
+        if (!stunned && !GameManager.pause)
         {
             activeState.Perform();
+        }
+        else
+        {
+            if (activeState is MovementState)
+            {
+                (activeState as MovementState).Stop();
+            }
         }
     }
 

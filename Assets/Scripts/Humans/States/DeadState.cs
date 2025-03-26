@@ -15,13 +15,13 @@ public class DeadState : State
     public override void Perform()
     {
         timer += Time.deltaTime;
-        if (timer >= 20 && !expiring) {
+        if (timer >= 15 && !expiring) {
             //animazione scomparsa
             expiring = true;
         }
-        if(timer >= 25)
+        if(timer >= 20)
         {
-            GameObject.Destroy(human);
+            GameObject.Destroy(human.gameObject);
         }
     }
 }

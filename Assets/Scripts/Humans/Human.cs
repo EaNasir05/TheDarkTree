@@ -22,8 +22,17 @@ public class Human : MonoBehaviour
     public Transform GetTree() { return _tree; }
     public void SetTree(Transform tree) { _tree = tree; }
     public float GetAvoidenceDistance() { return avoidanceDistance; }
-    public void ChangeMovementSpeed(float value) { movementSpeed += value; }
     public void SetInsideBrambles(bool value) { insideBrambles = value; }
+    
+    public void HalveMovementSpeed()
+    {
+        movementSpeed /= 2;
+    }
+
+    public void DoubleMovementSpeed()
+    {
+        movementSpeed *= 2;
+    }
 
     private void Start()
     {

@@ -6,7 +6,7 @@ public class Slough : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<Human>().ChangeMovementSpeed(-2);
+            collision.gameObject.GetComponent<Human>().HalveMovementSpeed();
         }
     }
 
@@ -14,7 +14,7 @@ public class Slough : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<Human>().ChangeMovementSpeed(2);
+            collision.gameObject.GetComponent<Human>().DoubleMovementSpeed();
         }
     }
 }

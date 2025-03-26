@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -21,6 +22,11 @@ public class MovementState : State
         MoveTowardsTree();
         AvoidObstacles();
         //animazione corsa
+    }
+
+    public void Stop()
+    {
+        _rb.linearVelocity = new Vector2(0, 0);
     }
 
     private void MoveTowardsTree()
