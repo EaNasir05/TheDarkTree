@@ -6207,9 +6207,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1354312635}
-        m_TargetAssemblyTypeName: UserInterfaceManager, Assembly-CSharp
-        m_MethodName: CloseTrapsList
+      - m_Target: {fileID: 485288477}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: endTrapSelection
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

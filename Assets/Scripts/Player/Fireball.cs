@@ -19,7 +19,7 @@ public class Fireball : MonoBehaviour
         transform.localScale = new Vector3(size, size, 1);
     }
 
-    private void Start()
+    private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         speed = player.GetComponent<Shooting>().GetFireballSpeed();

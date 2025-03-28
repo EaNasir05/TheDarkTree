@@ -15,7 +15,7 @@ public class Root : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && interactable && !GameManager.pause)
+        if (Input.GetKeyDown(KeyCode.E) && interactable && !GameManager.pause && !GameManager.selectingTrap)
         {
             if (CorpseManager.instance.GetCorpse() != null)
             {

@@ -93,7 +93,6 @@ public class GameManager : MonoBehaviour
 
     public void endTrapSelection()
     {
-        Debug.Log("CHIUSO");
         UserInterfaceManager.instance.CloseTrapsList();
         selectingTrap = false;
     }
