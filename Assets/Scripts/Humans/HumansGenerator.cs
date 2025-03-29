@@ -3,21 +3,29 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using System.Runtime.CompilerServices;
+using UnityEditor;
 
 public class HumansGenerator : MonoBehaviour
 {
-    public static int level;
+    public static HumansGenerator instance;
     [SerializeField] private Transform _tree;
     [SerializeField] private GameObject[] _spawnPoints;
     [SerializeField] private float spawnCooldown;
     [SerializeField] private int[] _hordesPower;
     [SerializeField] private GameObject[] _humansPrefabs;
     [SerializeField] private Human[] _humans;
+    private int level;
+    private List<GameObject> activeSpawnPoints;
     private float timer;
 
-    private void Start()
+    private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
         level = 0;
+        activeSpawnPoints = new List<GameObject>();
         for (int x = 0; x < _humans.Length; x++)
         {
             _humans[x].SetTree(_tree);
@@ -27,7 +35,7 @@ public class HumansGenerator : MonoBehaviour
 
     void Update()
     {
-        if (!GameManager.pause)
+        if (!GameManager.pause && !GameManager.dialogueActive)
         {
             timer += Time.deltaTime;
             if (timer >= spawnCooldown)
@@ -36,22 +44,60 @@ public class HumansGenerator : MonoBehaviour
                 List<int> selection = SelectHumansToGenerate();
                 for(int x = 0; x < selection.Count; x++)
                 {
-                    Instantiate(_humansPrefabs[selection[x]], _spawnPoints[x].transform.position, Quaternion.identity);
+                    Instantiate(_humansPrefabs[selection[x]], activeSpawnPoints[x].transform.position, Quaternion.identity);
                 }
                 timer = 0;
             }
         }
     }
 
+    public void LevelUp()
+    {
+        level++;
+        switch (level)
+        {
+            case 1:
+                activeSpawnPoints.Add(_spawnPoints[0]);
+                activeSpawnPoints.Add(_spawnPoints[1]);
+                _spawnPoints[0].SetActive(true);
+                _spawnPoints[1].SetActive(true);
+                break;
+            case 2:
+                activeSpawnPoints.Add(_spawnPoints[2]);
+                activeSpawnPoints.Add(_spawnPoints[3]);
+                _spawnPoints[2].SetActive(true);
+                _spawnPoints[3].SetActive(true);
+                break;
+            case 3:
+                activeSpawnPoints.Add(_spawnPoints[4]);
+                activeSpawnPoints.Add(_spawnPoints[5]);
+                _spawnPoints[4].SetActive(true);
+                _spawnPoints[5].SetActive(true);
+                break;
+            case 4:
+                activeSpawnPoints.Add(_spawnPoints[6]);
+                activeSpawnPoints.Add(_spawnPoints[7]);
+                _spawnPoints[6].SetActive(true);
+                _spawnPoints[7].SetActive(true);
+                break;
+            case 5:
+                activeSpawnPoints.Add(_spawnPoints[8]);
+                activeSpawnPoints.Add(_spawnPoints[9]);
+                _spawnPoints[8].SetActive(true);
+                _spawnPoints[9].SetActive(true);
+                break;
+        }
+    }
+
     private void ShuffleSpawnPoints()
     {
-        for (int i = _spawnPoints.Length - 1; i > 0; i--)
+        for (int i = activeSpawnPoints.Count - 1; i > 0; i--)
         {
             int j = Random.Range(0, i + 1);
 
-            GameObject temp = _spawnPoints[i];
-            _spawnPoints[i] = _spawnPoints[j];
-            _spawnPoints[j] = temp;
+            GameObject temp = activeSpawnPoints[i];
+            activeSpawnPoints[i] = activeSpawnPoints[j];
+            activeSpawnPoints[j] = temp;
         }
     }
 
@@ -75,7 +121,7 @@ public class HumansGenerator : MonoBehaviour
         List<int> ret = new List<int>();
         for (int x = 0; x < 5; x++)
         {
-            if (_humans[x].GetPower() <= power && _humans[x].GetLevel() >= level)
+            if (_humans[x].GetPower() <= power && _humans[x].GetLevel() <= level)
             {
                 ret.Add(x);
             }

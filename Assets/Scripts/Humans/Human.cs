@@ -69,7 +69,7 @@ public class Human : MonoBehaviour
     private void Die()
     {
         GetComponent<StateMachine>().ChangeState(new DeadState());
-        GetComponent<SpriteRenderer>().color = Color.yellow;
+        GetComponent<SpriteRenderer>().color = Color.red;
         gameObject.tag = "Corpse";
         _collider.isTrigger = true;
         _collider.size = new Vector2((float)1.5, (float)1.5);

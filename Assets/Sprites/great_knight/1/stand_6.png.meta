@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: a0ce3206db6be4304a27036927858706
+guid: 00d80d03578794996b3bd0aebad547f3
 AssetOrigin:
   serializedVersion: 1
   productId: 262999
   packageName: Humans 2 - Top Down Pixel Art Character Assets
   packageVersion: 1.0
-  assetPath: Assets/sanctum_pixel/human-2-topdown-package/Sprite/huma-2-topdown/swordhorse/1/die_4.png
+  assetPath: Assets/sanctum_pixel/human-2-topdown-package/Sprite/huma-2-topdown/swordhorse/1/stand_6.png
   uploadId: 606781
 TextureImporter:
   internalIDToNameTable: []
@@ -55,7 +55,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 20
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1

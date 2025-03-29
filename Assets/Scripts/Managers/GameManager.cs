@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public static bool pause;
     public static bool selectingTrap;
+    public static bool dialogueActive;
     private int level = 0;
     private int corpses = 0;
     private int healthPoints = 100;
@@ -60,6 +61,7 @@ public class GameManager : MonoBehaviour
         }
         pause = false;
         selectingTrap = false;
+        dialogueActive = false;
     }
 
     private void Update()
@@ -146,7 +148,8 @@ public class GameManager : MonoBehaviour
         {
             selectingTrap = false;
         }
-        //AddRoots();
+        AddRoots();
+        HumansGenerator.instance.LevelUp();
     }
 
     private void AddRoots()
@@ -161,16 +164,18 @@ public class GameManager : MonoBehaviour
                 _roots[2].SetActive(true);
                 _roots[3].SetActive(true);
                 break;
-            case 5:
+            case 4:
                 _roots[4].SetActive(true);
+                break;
+            case 5:
                 _roots[5].SetActive(true);
+                _roots[6].SetActive(true);
                 break;
             case 7:
-                _roots[6].SetActive(true);
                 _roots[7].SetActive(true);
-                break;
-            case 9:
                 _roots[8].SetActive(true);
+                break;
+            case 8:
                 _roots[9].SetActive(true);
                 break;
         }
@@ -196,7 +201,7 @@ public class GameManager : MonoBehaviour
         for (int x = 0; x < 2; x++)
         {
             enhancements[x] = Random.Range(0, 4);
-            if (x == 1 && enhancements[0] == enhancements[1] && enhancementsAmounts[x] < 3)
+            if (x == 1 && enhancements[0] == enhancements[1] && enhancementsAmounts[x] < 4)
             {
                 x--;
             }
@@ -208,7 +213,6 @@ public class GameManager : MonoBehaviour
     {
         UserInterfaceManager.instance.IncreaseLevel();
         level++;
-        HumansGenerator.level++;
         pause = true;
         if (level < 10)
         {

@@ -18,9 +18,12 @@ public class CorpseManager : MonoBehaviour
 
     public void SetCorpse(GameObject corpse)
     {
-        this.corpse = corpse;
-        corpse.transform.parent = _corpsePoint;
-        corpse.transform.position = _corpsePoint.position;
+        if (this.corpse == null)
+        {
+            this.corpse = corpse;
+            corpse.transform.parent = _corpsePoint;
+            corpse.transform.position = _corpsePoint.position;
+        }
     }
 
     public void DeleteCorpse()

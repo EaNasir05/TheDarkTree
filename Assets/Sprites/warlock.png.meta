@@ -1,14 +1,10 @@
 fileFormatVersion: 2
-guid: fa1770da3230f49238f1d1e7fad503d0
-AssetOrigin:
-  serializedVersion: 1
-  productId: 262999
-  packageName: Humans 2 - Top Down Pixel Art Character Assets
-  packageVersion: 1.0
-  assetPath: Assets/sanctum_pixel/human-2-topdown-package/Sprite/huma-2-topdown/swordhorse/1/walk_6.png
-  uploadId: 606781
+guid: 83d5e998560b5d44089e1d9d2acd4449
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -7957348900318250800
+    second: warlock_trasparente_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -50,12 +46,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 600
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,27 +96,36 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Server
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: warlock_trasparente_0
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 72
+        width: 662
+        height: 886
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d87fa2c551d19190800000000000000
+      internalID: -7957348900318250800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 55dccd03f82ffeb46ad21011d41f878a
     internalID: 0
     vertices: []
     indices: 
@@ -129,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      warlock_trasparente_0: -7957348900318250800
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

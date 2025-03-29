@@ -11,20 +11,27 @@ public class CorpseInteraction : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && interactable && !GameManager.pause)
+        if (Input.GetKeyDown(KeyCode.C) && interactable && !GameManager.pause)
         {
             CorpseManager.instance.SetCorpse(gameObject);
-            gameObject.GetComponent<Collider2D>().enabled = false;
-            interactable = false;
+            if (CorpseManager.instance.GetCorpse() == gameObject)
+            {
+                gameObject.GetComponent<Collider2D>().enabled = false;
+                interactable = false;
+            }
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && CorpseManager.instance.GetCorpse() == null)
         {
             interactable = true;
             //cambia sprite
+        }
+        else
+        {
+            interactable = false;
         }
     }
 
