@@ -17,7 +17,7 @@ public class AttackState : State
         {
             cooldown = 0;
             //animazione attacco
-            UserInterfaceManager.instance.DecreaseHP(human.GetDamage());
+            GameManager.instance.DecreaseHealthPoints(human.GetDamage());
         }
     }
 }

@@ -37,6 +37,10 @@ public class UserInterfaceManager : MonoBehaviour
     {
         int currentHP = int.Parse(_healthPoints.text);
         currentHP -= damage;
+        if (currentHP < 0)
+        {
+            currentHP = 0;
+        }
         _healthPoints.text = (currentHP).ToString();
     }
 

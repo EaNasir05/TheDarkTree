@@ -17,7 +17,7 @@ public class HumansGenerator : MonoBehaviour
 
     private void Start()
     {
-        level = 1;
+        level = 0;
         for (int x = 0; x < _humans.Length; x++)
         {
             _humans[x].SetTree(_tree);
@@ -59,7 +59,7 @@ public class HumansGenerator : MonoBehaviour
     {
         List<int> selection = new List<int>();
         List<int> filtered;
-        int power = _hordesPower[level - 1];
+        int power = _hordesPower[level];
         while (power > 0)
         {
             filtered = filterHumansByPower(power);
@@ -75,7 +75,7 @@ public class HumansGenerator : MonoBehaviour
         List<int> ret = new List<int>();
         for (int x = 0; x < 5; x++)
         {
-            if (_humans[x].GetPower() <= power)
+            if (_humans[x].GetPower() <= power && _humans[x].GetLevel() >= level)
             {
                 ret.Add(x);
             }

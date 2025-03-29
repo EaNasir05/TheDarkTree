@@ -11,6 +11,7 @@ public class Human : MonoBehaviour
     [SerializeField] private int power;
     [SerializeField] private Transform _tree;
     [SerializeField] private float avoidanceDistance;
+    [SerializeField] private int level;
     private float bramblesAttackCooldown;
     private bool insideBrambles;
 
@@ -22,6 +23,7 @@ public class Human : MonoBehaviour
     public Transform GetTree() { return _tree; }
     public void SetTree(Transform tree) { _tree = tree; }
     public float GetAvoidenceDistance() { return avoidanceDistance; }
+    public int GetLevel() { return level; }
     public void SetInsideBrambles(bool value) { insideBrambles = value; }
     
     public void HalveMovementSpeed()

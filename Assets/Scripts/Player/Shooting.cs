@@ -25,7 +25,7 @@ public class Shooting : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetMouseButton(0) && !GameManager.pause && !GameManager.selectingTrap)
+        if (Input.GetMouseButton(0) && !GameManager.pause && !GameManager.selectingTrap && CorpseManager.instance.GetCorpse() == null)
         {
             StartCoroutine("Shoot");
         }

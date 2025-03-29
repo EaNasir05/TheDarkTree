@@ -8,12 +8,14 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public static bool pause;
     public static bool selectingTrap;
-    private int level = 1;
+    private int level = 0;
     private int corpses = 0;
+    private int healthPoints = 100;
     [SerializeField] private GameObject _tree;
     [SerializeField] private int[] _milestones;
     [SerializeField] private Shooting _shootingSystem;
     [SerializeField] private Movement _movementSystem;
+    [SerializeField] private GameObject[] _roots;
     private int[] trapsAmounts = {0, 0, 0, 0, 0, 0};
     private int[] enhancementsAmounts = { 0, 0, 0, 0 };
     private string[] _trapsNames = {
@@ -65,6 +67,16 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             pause = !pause;
+        }
+    }
+
+    public void DecreaseHealthPoints(int damage)
+    {
+        UserInterfaceManager.instance.DecreaseHP(damage);
+        healthPoints -= damage;
+        if (healthPoints <= 0)
+        {
+            SceneManager.LoadScene("GameOver");
         }
     }
 
@@ -134,6 +146,34 @@ public class GameManager : MonoBehaviour
         {
             selectingTrap = false;
         }
+        //AddRoots();
+    }
+
+    private void AddRoots()
+    {
+        switch (level)
+        {
+            case 1:
+                _roots[0].SetActive(true);
+                _roots[1].SetActive(true);
+                break;
+            case 3:
+                _roots[2].SetActive(true);
+                _roots[3].SetActive(true);
+                break;
+            case 5:
+                _roots[4].SetActive(true);
+                _roots[5].SetActive(true);
+                break;
+            case 7:
+                _roots[6].SetActive(true);
+                _roots[7].SetActive(true);
+                break;
+            case 9:
+                _roots[8].SetActive(true);
+                _roots[9].SetActive(true);
+                break;
+        }
     }
 
     private int[] GenerateTraps()
@@ -170,17 +210,24 @@ public class GameManager : MonoBehaviour
         level++;
         HumansGenerator.level++;
         pause = true;
-        trapsGenerated = GenerateTraps();
-        enhancementsGenerated = GenerateEnhancements();
-        UserInterfaceManager.instance.GenerateLevelUpTraps(_trapsNames[trapsGenerated[0]], _trapsNames[trapsGenerated[1]], _trapsDescriptions[trapsGenerated[0]], _trapsDescriptions[trapsGenerated[1]]);
-        UserInterfaceManager.instance.GenerateLevelUpEnhancements(_enhancementsNames[enhancementsGenerated[0]], _enhancementsNames[enhancementsGenerated[1]], _enhancementsDescriptions[enhancementsGenerated[0]], _enhancementsDescriptions[enhancementsGenerated[1]]);
-        UserInterfaceManager.instance.OpenLevelUpTraps();
+        if (level < 10)
+        {
+            trapsGenerated = GenerateTraps();
+            enhancementsGenerated = GenerateEnhancements();
+            UserInterfaceManager.instance.GenerateLevelUpTraps(_trapsNames[trapsGenerated[0]], _trapsNames[trapsGenerated[1]], _trapsDescriptions[trapsGenerated[0]], _trapsDescriptions[trapsGenerated[1]]);
+            UserInterfaceManager.instance.GenerateLevelUpEnhancements(_enhancementsNames[enhancementsGenerated[0]], _enhancementsNames[enhancementsGenerated[1]], _enhancementsDescriptions[enhancementsGenerated[0]], _enhancementsDescriptions[enhancementsGenerated[1]]);
+            UserInterfaceManager.instance.OpenLevelUpTraps();
+        }
+        else
+        {
+            SceneManager.LoadScene("Victory");
+        }
     }
 
     public void FeedRoot()
     {
         corpses++;
-        if (_milestones[level-1] == corpses)
+        if (_milestones[level] == corpses)
         {
             LevelUp();
             corpses = 0;

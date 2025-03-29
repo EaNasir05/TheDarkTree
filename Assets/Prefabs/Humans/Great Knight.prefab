@@ -186,6 +186,7 @@ MonoBehaviour:
   power: 2
   _tree: {fileID: 0}
   avoidanceDistance: 2
+  level: 8
 --- !u!114 &4770757134944773249
 MonoBehaviour:
   m_ObjectHideFlags: 0
