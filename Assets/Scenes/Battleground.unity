@@ -2440,11 +2440,11 @@ MonoBehaviour:
   _roots:
   - {fileID: 257444221}
   - {fileID: 888333279}
-  - {fileID: 1697754081}
-  - {fileID: 750704604}
   - {fileID: 1121379202}
   - {fileID: 568468936}
   - {fileID: 744672872}
+  - {fileID: 1697754081}
+  - {fileID: 750704604}
   - {fileID: 1898368680}
   - {fileID: 653035580}
   - {fileID: 489936344}
@@ -8911,7 +8911,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 485288477}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: endTrapSelection
+        m_MethodName: EndTrapSelection
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10171,7 +10171,7 @@ MonoBehaviour:
   - {fileID: 408882697}
   - {fileID: 276678759}
   spawnCooldown: 5
-  _hordesPower: 00000000010000000200000003000000030000000400000004000000050000000500000006000000
+  _hordesPower: 00000000010000000200000002000000030000000300000004000000040000000500000005000000
   _humansPrefabs:
   - {fileID: 1395047181644495603, guid: 35abc94eb515e144090efe1d425b8cd5, type: 3}
   - {fileID: 3602223772503417564, guid: 55c7c61c0af937d42af19b79b630f7b0, type: 3}

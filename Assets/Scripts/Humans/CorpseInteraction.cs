@@ -11,7 +11,7 @@ public class CorpseInteraction : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C) && interactable && !GameManager.pause)
+        if (Input.GetKeyDown(KeyCode.E) && interactable && !GameManager.pause)
         {
             CorpseManager.instance.SetCorpse(gameObject);
             if (CorpseManager.instance.GetCorpse() == gameObject)

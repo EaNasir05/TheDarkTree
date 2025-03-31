@@ -5,13 +5,14 @@ public class Human : MonoBehaviour
     [SerializeField] private BoxCollider2D _collider;
     [SerializeField] private int heath;
     [SerializeField] private int damage;
-    [SerializeField] private float movementSpeed;
+    [SerializeField] private float _maxMovementSpeed;
     [SerializeField] private float attackCooldown;
     [SerializeField] private float range;
     [SerializeField] private int power;
     [SerializeField] private Transform _tree;
     [SerializeField] private float avoidanceDistance;
     [SerializeField] private int level;
+    private float movementSpeed;
     private float bramblesAttackCooldown;
     private bool insideBrambles;
 
@@ -26,19 +27,20 @@ public class Human : MonoBehaviour
     public int GetLevel() { return level; }
     public void SetInsideBrambles(bool value) { insideBrambles = value; }
     
-    public void HalveMovementSpeed()
+    public void DecreaseMovementSpeed()
     {
-        movementSpeed /= 2;
+        movementSpeed = (float)(_maxMovementSpeed * 0.66);
     }
 
-    public void DoubleMovementSpeed()
+    public void IncreaseMovementSpeed()
     {
-        movementSpeed *= 2;
+        movementSpeed = _maxMovementSpeed;
     }
 
     private void Start()
     {
         GetComponent<StateMachine>().Initialise();
+        movementSpeed = _maxMovementSpeed;
         bramblesAttackCooldown = 0;
         insideBrambles = false;
     }
@@ -48,7 +50,7 @@ public class Human : MonoBehaviour
         if (insideBrambles && !GameManager.pause)
         {
             bramblesAttackCooldown += Time.deltaTime;
-            if (bramblesAttackCooldown >= 1)
+            if (bramblesAttackCooldown >= 0.75)
             {
                 DecreaseHealth(1);
                 bramblesAttackCooldown = 0;

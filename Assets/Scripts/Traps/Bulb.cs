@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Bulb : MonoBehaviour
 {
+    [SerializeField] private Collider2D collider2d;
     [SerializeField] private GameObject _explosion;
     [SerializeField] private float explosionCooldown;
     private bool readyToExplode = true;
@@ -15,6 +16,7 @@ public class Bulb : MonoBehaviour
             if (timer >= explosionCooldown)
             {
                 readyToExplode = true;
+                collider2d.enabled = true;
                 timer = 0;
             }
             else
@@ -29,6 +31,7 @@ public class Bulb : MonoBehaviour
         if (collision.gameObject.CompareTag("Fireball") )
         {
             StartCoroutine("CreateExplosion");
+            collider2d.enabled = false;
             readyToExplode = false;
         }
     }

@@ -6,7 +6,7 @@ public class Explosion : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<Human>().DecreaseHealth(5);
+            collision.gameObject.GetComponent<Human>().DecreaseHealth(7);
         }
     }
 }

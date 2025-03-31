@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void endTrapSelection()
+    public void EndTrapSelection()
     {
         UserInterfaceManager.instance.CloseTrapsList();
         selectingTrap = false;
@@ -130,7 +130,7 @@ public class GameManager : MonoBehaviour
                 _movementSystem.ChangeMovementSpeed((float)1.5);
                 break;
             case 1:
-                _shootingSystem.ChangeFireballCooldown((float)-0.133);
+                _shootingSystem.IncreaseFireRate();
                 break;
             case 2:
                 _shootingSystem.ChangeFireballSize((float)0.2);
@@ -162,9 +162,9 @@ public class GameManager : MonoBehaviour
                 break;
             case 3:
                 _roots[2].SetActive(true);
-                _roots[3].SetActive(true);
                 break;
             case 4:
+                _roots[3].SetActive(true);
                 _roots[4].SetActive(true);
                 break;
             case 5:
@@ -201,7 +201,7 @@ public class GameManager : MonoBehaviour
         for (int x = 0; x < 2; x++)
         {
             enhancements[x] = Random.Range(0, 4);
-            if (x == 1 && enhancements[0] == enhancements[1] && enhancementsAmounts[x] < 4)
+            if (x == 1 && (enhancements[0] == enhancements[1] || enhancementsAmounts[x] > 4))
             {
                 x--;
             }
