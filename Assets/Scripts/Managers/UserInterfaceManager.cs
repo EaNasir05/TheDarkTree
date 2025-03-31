@@ -11,6 +11,9 @@ public class UserInterfaceManager : MonoBehaviour
     [SerializeField] private GameObject _trapsList;
     [SerializeField] private GameObject _levelUpTraps;
     [SerializeField] private GameObject _levelUpEnhancements;
+    [SerializeField] private SpriteRenderer _treeSpriteRenderer;
+    private bool damaged;
+    private float damagedSpriteTimer;
 
     private void Awake()
     {
@@ -23,6 +26,22 @@ public class UserInterfaceManager : MonoBehaviour
             _trapsList.transform.GetChild(3).GetComponent<Image>().color = Color.gray;
             _trapsList.transform.GetChild(4).GetComponent<Image>().color = Color.gray;
             _trapsList.transform.GetChild(5).GetComponent<Image>().color = Color.gray;
+            damagedSpriteTimer = 0;
+            damaged = false;
+        }
+    }
+
+    private void Update()
+    {
+        if (damaged)
+        {
+            damagedSpriteTimer += Time.deltaTime;
+            if(damagedSpriteTimer >= 0.15)
+            {
+                _treeSpriteRenderer.color = Color.white;
+                damaged = false;
+                damagedSpriteTimer = 0;
+            }
         }
     }
 
@@ -41,6 +60,8 @@ public class UserInterfaceManager : MonoBehaviour
         {
             currentHP = 0;
         }
+        _treeSpriteRenderer.color = Color.red;
+        damaged = true;
         _healthPoints.text = (currentHP).ToString();
     }
 

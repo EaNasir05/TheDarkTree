@@ -4,8 +4,10 @@ using System.Collections;
 public class Crystal : MonoBehaviour
 {
     private Shooting _shootingSystem;
+    [SerializeField] private Collider2D _collider;
     [SerializeField] private float buffCooldown;
     [SerializeField] private float buffDuration;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
     private bool readyToBuff;
     private bool buffEnded;
     private float timer;
@@ -34,7 +36,9 @@ public class Crystal : MonoBehaviour
             {
                 if (timer >= buffCooldown)
                 {
+                    _collider.enabled = true;
                     readyToBuff = true;
+                    _spriteRenderer.color = new Color((float)0.6, 0, 1);
                     timer = 0;
                 }
             }
@@ -50,6 +54,8 @@ public class Crystal : MonoBehaviour
                 _shootingSystem.ChangeFireballDamage(3);
                 buffEnded = false;
                 readyToBuff = false;
+                _spriteRenderer.color = Color.gray;
+                _collider.enabled = false;
             }
         }
     }

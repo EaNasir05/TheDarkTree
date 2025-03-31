@@ -12,9 +12,13 @@ public class Human : MonoBehaviour
     [SerializeField] private Transform _tree;
     [SerializeField] private float avoidanceDistance;
     [SerializeField] private int level;
+    [SerializeField] private Sprite _corpseSprite;
+    private SpriteRenderer _spriteRenderer;
     private float movementSpeed;
     private float bramblesAttackCooldown;
     private bool insideBrambles;
+    private bool damaged;
+    private float damagedSpriteCooldown;
 
     public int GetDamage() { return damage; }
     public float GetMovementSpeed() { return movementSpeed; }
@@ -39,9 +43,11 @@ public class Human : MonoBehaviour
 
     private void Start()
     {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         GetComponent<StateMachine>().Initialise();
         movementSpeed = _maxMovementSpeed;
         bramblesAttackCooldown = 0;
+        damagedSpriteCooldown = 0;
         insideBrambles = false;
     }
 
@@ -56,28 +62,41 @@ public class Human : MonoBehaviour
                 bramblesAttackCooldown = 0;
             }
         }
+        if (damaged)
+        {
+            damagedSpriteCooldown += Time.deltaTime;
+            if (damagedSpriteCooldown >= 0.15)
+            {
+                _spriteRenderer.color = Color.white;
+                damagedSpriteCooldown = 0;
+                damaged = false;
+            }
+        }
     }
 
     public void DecreaseHealth(int damage)
     {
         heath -= damage;
+        _spriteRenderer.color = Color.red;
+        damaged = true;
         if (heath <= 0)
         {
             Die();
-            //animazione morte
         }
     }
 
     private void Die()
     {
         GetComponent<StateMachine>().ChangeState(new DeadState());
-        GetComponent<SpriteRenderer>().color = Color.red;
+        _spriteRenderer.sprite = _corpseSprite;
         gameObject.tag = "Corpse";
         _collider.isTrigger = true;
-        _collider.size = new Vector2((float)1.5, (float)1.5);
+        _collider.offset = new Vector2(0, (float)-0.15);
+        _collider.size = new Vector2((float)1.75, (float)1.75);
         gameObject.GetComponent<CorpseInteraction>().enabled = true;
         Destroy(gameObject.GetComponent<Rigidbody2D>());
         gameObject.layer = LayerMask.NameToLayer("Corpse");
+        _spriteRenderer.color = Color.white;
         this.enabled = false;
     }
 }

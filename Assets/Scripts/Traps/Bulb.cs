@@ -3,9 +3,11 @@ using System.Collections;
 
 public class Bulb : MonoBehaviour
 {
-    [SerializeField] private Collider2D collider2d;
+    [SerializeField] private Collider2D _collider;
     [SerializeField] private GameObject _explosion;
     [SerializeField] private float explosionCooldown;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private float[] _color;
     private bool readyToExplode = true;
     private float timer = 0;
 
@@ -16,7 +18,8 @@ public class Bulb : MonoBehaviour
             if (timer >= explosionCooldown)
             {
                 readyToExplode = true;
-                collider2d.enabled = true;
+                _collider.enabled = true;
+                _spriteRenderer.color = new Color(_color[0], _color[1], _color[2]);
                 timer = 0;
             }
             else
@@ -31,8 +34,9 @@ public class Bulb : MonoBehaviour
         if (collision.gameObject.CompareTag("Fireball") )
         {
             StartCoroutine("CreateExplosion");
-            collider2d.enabled = false;
+            _collider.enabled = false;
             readyToExplode = false;
+            _spriteRenderer.color = Color.gray;
         }
     }
 
