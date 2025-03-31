@@ -2,10 +2,18 @@ using UnityEngine;
 
 public class CorpseInteraction : MonoBehaviour
 {
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+    private Color _interactableColor;
     private bool interactable;
+
+    private void Awake()
+    {
+        _interactableColor = new Color((float)0.66, (float)0.29, (float)0.12);
+    }
 
     private void Start()
     {
+        _spriteRenderer.color = Color.white;
         interactable = false;
     }
 
@@ -27,11 +35,18 @@ public class CorpseInteraction : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && CorpseManager.instance.GetCorpse() == null)
         {
             interactable = true;
-            //cambia sprite
+            if(_spriteRenderer.color == Color.white)
+            {
+                _spriteRenderer.color = _interactableColor;
+            }
         }
         else
         {
             interactable = false;
+            if(_spriteRenderer.color == _interactableColor)
+            {
+                _spriteRenderer.color = Color.white;
+            }
         }
     }
 
@@ -40,7 +55,7 @@ public class CorpseInteraction : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             interactable = false;
-            //cambia sprite
+            _spriteRenderer.color = Color.white;
         }
     }
 }

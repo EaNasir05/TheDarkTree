@@ -5,11 +5,15 @@ public class Root : MonoBehaviour
 {
     [SerializeField] private Transform _trapPlacement;
     [SerializeField] private GameObject[] _trapsPrefabs;
+    private SpriteRenderer _spriteRenderer;
+    private Color _interactableColor;
     private GameObject trap;
     private bool interactable;
 
-    private void Start()
+    private void Awake()
     {
+        _spriteRenderer = transform.parent.GetComponent<SpriteRenderer>();
+        _interactableColor = Color.yellow;
         interactable = false;
     }
 
@@ -57,17 +61,22 @@ public class Root : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             interactable = true;
-            /*
             if (CorpseManager.instance.GetCorpse() != null || trap == null)
             {
-                //cambia sprite
+                if(_spriteRenderer.color == Color.white)
+                {
+                    _spriteRenderer.color = _interactableColor;
+                }
             }
-            */
+            else if (_spriteRenderer.color == _interactableColor)
+            {
+                _spriteRenderer.color = Color.white;
+            }
         }
     }
 
@@ -76,7 +85,7 @@ public class Root : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             interactable = false;
-            //cambia sprite
+            _spriteRenderer.color = Color.white;
         }
     }
 }
