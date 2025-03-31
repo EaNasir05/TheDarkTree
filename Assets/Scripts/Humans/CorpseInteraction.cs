@@ -8,7 +8,7 @@ public class CorpseInteraction : MonoBehaviour
 
     private void Awake()
     {
-        _interactableColor = new Color((float)0.66, (float)0.29, (float)0.12);
+        _interactableColor = Color.yellow;
     }
 
     private void Start()
@@ -21,11 +21,13 @@ public class CorpseInteraction : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && interactable && !GameManager.pause)
         {
-            CorpseManager.instance.SetCorpse(gameObject);
-            if (CorpseManager.instance.GetCorpse() == gameObject)
+            bool interacted = CorpseManager.instance.SetCorpse(gameObject);
+            if (interacted)
             {
+                _spriteRenderer.color = Color.white;
                 gameObject.GetComponent<Collider2D>().enabled = false;
                 interactable = false;
+                Cursor.visible = false;
             }
         }
     }
@@ -35,18 +37,12 @@ public class CorpseInteraction : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && CorpseManager.instance.GetCorpse() == null)
         {
             interactable = true;
-            if(_spriteRenderer.color == Color.white)
-            {
-                _spriteRenderer.color = _interactableColor;
-            }
+            _spriteRenderer.color = _interactableColor;
         }
         else
         {
             interactable = false;
-            if(_spriteRenderer.color == _interactableColor)
-            {
-                _spriteRenderer.color = Color.white;
-            }
+            _spriteRenderer.color = Color.white;
         }
     }
 

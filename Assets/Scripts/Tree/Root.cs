@@ -6,14 +6,14 @@ public class Root : MonoBehaviour
     [SerializeField] private Transform _trapPlacement;
     [SerializeField] private GameObject[] _trapsPrefabs;
     private SpriteRenderer _spriteRenderer;
-    private Color _interactableColor;
+    [SerializeField] private Sprite _standardSprite;
+    [SerializeField] private Sprite _interactableSprite;
     private GameObject trap;
     private bool interactable;
 
     private void Awake()
     {
         _spriteRenderer = transform.parent.GetComponent<SpriteRenderer>();
-        _interactableColor = Color.yellow;
         interactable = false;
     }
 
@@ -23,8 +23,13 @@ public class Root : MonoBehaviour
         {
             if (CorpseManager.instance.GetCorpse() != null)
             {
+                Cursor.visible = true;
                 GameManager.instance.FeedRoot();
                 CorpseManager.instance.DeleteCorpse();
+                if (trap != null)
+                {
+                    _spriteRenderer.sprite = _standardSprite;
+                }
             }
             else if (trap == null)
             {
@@ -59,23 +64,21 @@ public class Root : MonoBehaviour
                 Debug.Log("TRAPPOLA INESISTENTE");
                 break;
         }
+        _spriteRenderer.sprite = _standardSprite;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             interactable = true;
             if (CorpseManager.instance.GetCorpse() != null || trap == null)
             {
-                if(_spriteRenderer.color == Color.white)
-                {
-                    _spriteRenderer.color = _interactableColor;
-                }
+                _spriteRenderer.sprite = _interactableSprite;
             }
-            else if (_spriteRenderer.color == _interactableColor)
+            else
             {
-                _spriteRenderer.color = Color.white;
+                _spriteRenderer.sprite = _standardSprite;
             }
         }
     }
@@ -85,7 +88,7 @@ public class Root : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             interactable = false;
-            _spriteRenderer.color = Color.white;
+            _spriteRenderer.sprite = _standardSprite;
         }
     }
 }

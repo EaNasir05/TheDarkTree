@@ -16,14 +16,16 @@ public class CorpseManager : MonoBehaviour
 
     public GameObject GetCorpse() { return corpse; }
 
-    public void SetCorpse(GameObject corpse)
+    public bool SetCorpse(GameObject corpse)
     {
         if (this.corpse == null)
         {
             this.corpse = corpse;
             corpse.transform.parent = _corpsePoint;
             corpse.transform.position = _corpsePoint.position;
+            return true;
         }
+        return false;
     }
 
     public void DeleteCorpse()
