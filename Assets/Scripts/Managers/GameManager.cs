@@ -1,7 +1,5 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Events;
-using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -144,6 +142,8 @@ public class GameManager : MonoBehaviour
                 break;
         }
         UserInterfaceManager.instance.CloseLevelUpEnhancements();
+        UserInterfaceManager.instance.ShowHP();
+        UserInterfaceManager.instance.ShowLevel();
         pause = false;
         if (selectingTrap)
         {
@@ -218,6 +218,8 @@ public class GameManager : MonoBehaviour
         pause = true;
         if (level < 10)
         {
+            UserInterfaceManager.instance.HideHP();
+            UserInterfaceManager.instance.HideLevel();
             trapsGenerated = GenerateTraps();
             enhancementsGenerated = GenerateEnhancements();
             UserInterfaceManager.instance.GenerateLevelUpTraps(_trapsNames[trapsGenerated[0]], _trapsNames[trapsGenerated[1]], _trapsDescriptions[trapsGenerated[0]], _trapsDescriptions[trapsGenerated[1]]);

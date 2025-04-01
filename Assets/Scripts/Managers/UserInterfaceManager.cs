@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,9 +19,9 @@ public class UserInterfaceManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            damagedSpriteTimer = 0;
-            damaged = false;
         }
+        damagedSpriteTimer = 0;
+        damaged = false;
     }
 
     private void Update()
@@ -59,8 +58,29 @@ public class UserInterfaceManager : MonoBehaviour
         _healthPoints.text = (currentHP).ToString();
     }
 
+    public void ShowHP()
+    {
+        _healthPoints.transform.parent.gameObject.SetActive(true);
+    }
+
+    public void HideHP()
+    {
+        _healthPoints.transform.parent.gameObject.SetActive(false);
+    }
+
+    public void ShowLevel()
+    {
+        _level.transform.parent.gameObject.SetActive(true);
+    }
+
+    public void HideLevel()
+    {
+        _level.transform.parent.gameObject.SetActive(false);
+    }
+
     public void OpenTrapsList()
     {
+        Cursor.visible = true;
         _trapsList.SetActive(true);
     }
 
@@ -73,16 +93,80 @@ public class UserInterfaceManager : MonoBehaviour
     {
         _levelUpTraps.transform.GetChild(1).transform.GetChild(0).GetComponent<TMP_Text>().text = name1;
         _levelUpTraps.transform.GetChild(1).transform.GetChild(2).GetComponent<TMP_Text>().text = description1;
+        RectTransform rect = _levelUpTraps.transform.GetChild(1).transform.GetChild(2).GetComponent<RectTransform>();
+        switch (name1)
+        {
+            case "RUNA MAGICA":
+                rect.sizeDelta = new Vector2(500, rect.sizeDelta.y);
+                break;
+            case "BULBO ESPLOSIVO":
+                rect.sizeDelta = new Vector2(500, rect.sizeDelta.y);
+                break;
+            case "BULBO STORDENTE":
+                rect.sizeDelta = new Vector2(500, rect.sizeDelta.y);
+                break;
+            case "CRISTALLO ARCANO":
+                rect.sizeDelta = new Vector2(475, rect.sizeDelta.y);
+                break;
+            default:
+                rect.sizeDelta = new Vector2(520, rect.sizeDelta.y);
+                break;
+        }
         _levelUpTraps.transform.GetChild(2).transform.GetChild(0).GetComponent<TMP_Text>().text = name2;
         _levelUpTraps.transform.GetChild(2).transform.GetChild(2).GetComponent<TMP_Text>().text = description2;
+        rect = _levelUpTraps.transform.GetChild(2).transform.GetChild(2).GetComponent<RectTransform>();
+        switch (name2)
+        {
+            case "RUNA MAGICA":
+                rect.sizeDelta = new Vector2(500, rect.sizeDelta.y);
+                break;
+            case "BULBO ESPLOSIVO":
+                rect.sizeDelta = new Vector2(500, rect.sizeDelta.y);
+                break;
+            case "BULBO STORDENTE":
+                rect.sizeDelta = new Vector2(500, rect.sizeDelta.y);
+                break;
+            case "CRISTALLO ARCANO":
+                rect.sizeDelta = new Vector2(475, rect.sizeDelta.y);
+                break;
+            default:
+                rect.sizeDelta = new Vector2(520, rect.sizeDelta.y);
+                break;
+        }
     }
 
     public void GenerateLevelUpEnhancements(string name1, string name2, string description1, string description2)
     {
         _levelUpEnhancements.transform.GetChild(1).transform.GetChild(0).GetComponent<TMP_Text>().text = name1;
         _levelUpEnhancements.transform.GetChild(1).transform.GetChild(2).GetComponent<TMP_Text>().text = description1;
+        RectTransform rect = _levelUpEnhancements.transform.GetChild(1).transform.GetChild(2).GetComponent<RectTransform>();
+        switch (name1)
+        {
+            case "DEVASTAZIONE":
+                rect.sizeDelta = new Vector2(400, rect.sizeDelta.y);
+                break;
+            case "PIEDE LESTO":
+                rect.sizeDelta = new Vector2(370, rect.sizeDelta.y);
+                break;
+            default:
+                rect.sizeDelta = new Vector2(430, rect.sizeDelta.y);
+                break;
+        }
         _levelUpEnhancements.transform.GetChild(2).transform.GetChild(0).GetComponent<TMP_Text>().text = name2;
         _levelUpEnhancements.transform.GetChild(2).transform.GetChild(2).GetComponent<TMP_Text>().text = description2;
+        rect = _levelUpEnhancements.transform.GetChild(2).transform.GetChild(2).GetComponent<RectTransform>();
+        switch (name2)
+        {
+            case "DEVASTAZIONE":
+                rect.sizeDelta = new Vector2(400, rect.sizeDelta.y);
+                break;
+            case "PIEDE LESTO":
+                rect.sizeDelta = new Vector2(370, rect.sizeDelta.y);
+                break;
+            default:
+                rect.sizeDelta = new Vector2(430, rect.sizeDelta.y);
+                break;
+        }
     }
 
     public void OpenLevelUpTraps()
@@ -107,14 +191,14 @@ public class UserInterfaceManager : MonoBehaviour
 
     public void UpdateTrapsList(int index, int amount)
     {
-        _trapsList.transform.GetChild(index).transform.GetChild(1).GetComponent<TMP_Text>().text = amount.ToString();
+        _trapsList.transform.GetChild(0).transform.GetChild(index).transform.GetChild(1).GetComponent<TMP_Text>().text = amount.ToString();
         if (amount > 0)
         {
-            _trapsList.transform.GetChild(index).GetComponent<Button>().interactable = true;
+            _trapsList.transform.GetChild(0).transform.GetChild(index).GetComponent<Button>().interactable = true;
         }
         else
         {
-            _trapsList.transform.GetChild(index).GetComponent<Button>().interactable = false;
+            _trapsList.transform.GetChild(0).transform.GetChild(index).GetComponent<Button>().interactable = false;
         }
     }
 }

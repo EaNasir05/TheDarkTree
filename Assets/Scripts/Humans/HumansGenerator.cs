@@ -1,9 +1,5 @@
-using NUnit.Framework;
 using System.Collections.Generic;
-using System.Collections;
 using UnityEngine;
-using System.Runtime.CompilerServices;
-using UnityEditor;
 
 public class HumansGenerator : MonoBehaviour
 {
