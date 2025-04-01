@@ -178,9 +178,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collider: {fileID: 2228791867705555671}
-  heath: 25
+  heath: 30
   damage: 5
-  _maxMovementSpeed: 0.5
+  _maxMovementSpeed: 0.75
   attackCooldown: 1
   range: 1.5
   power: 2
@@ -188,6 +188,7 @@ MonoBehaviour:
   avoidanceDistance: 2
   level: 5
   _corpseSprite: {fileID: 21300000, guid: 2262e4ab5a1e343b39232b6c9e117ab1, type: 3}
+  elite: 0
 --- !u!114 &4429825947543164803
 MonoBehaviour:
   m_ObjectHideFlags: 0

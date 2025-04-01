@@ -20,12 +20,6 @@ public class UserInterfaceManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            _trapsList.transform.GetChild(0).GetComponent<Image>().color = Color.gray;
-            _trapsList.transform.GetChild(1).GetComponent<Image>().color = Color.gray;
-            _trapsList.transform.GetChild(2).GetComponent<Image>().color = Color.gray;
-            _trapsList.transform.GetChild(3).GetComponent<Image>().color = Color.gray;
-            _trapsList.transform.GetChild(4).GetComponent<Image>().color = Color.gray;
-            _trapsList.transform.GetChild(5).GetComponent<Image>().color = Color.gray;
             damagedSpriteTimer = 0;
             damaged = false;
         }
@@ -116,11 +110,11 @@ public class UserInterfaceManager : MonoBehaviour
         _trapsList.transform.GetChild(index).transform.GetChild(1).GetComponent<TMP_Text>().text = amount.ToString();
         if (amount > 0)
         {
-            _trapsList.transform.GetChild(index).GetComponent<Image>().color = Color.white;
+            _trapsList.transform.GetChild(index).GetComponent<Button>().interactable = true;
         }
         else
         {
-            _trapsList.transform.GetChild(index).GetComponent<Image>().color = Color.gray;
+            _trapsList.transform.GetChild(index).GetComponent<Button>().interactable = false;
         }
     }
 }

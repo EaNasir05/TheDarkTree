@@ -141,6 +141,9 @@ MonoBehaviour:
   _explosion: {fileID: 6013982477093367581, guid: 1c5fe6148036766429d55677f1d434c2, type: 3}
   explosionCooldown: 5
   _spriteRenderer: {fileID: 421459226881794686}
+  _explosionSprites:
+  - {fileID: -523584915, guid: 07a7d4c8ffe41f1439f289296d45b977, type: 3}
+  - {fileID: 500476928, guid: 07a7d4c8ffe41f1439f289296d45b977, type: 3}
   _color:
   - 1
   - 0.55

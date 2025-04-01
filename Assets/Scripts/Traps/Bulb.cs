@@ -7,6 +7,7 @@ public class Bulb : MonoBehaviour
     [SerializeField] private GameObject _explosion;
     [SerializeField] private float explosionCooldown;
     [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private Sprite[] _explosionSprites;
     [SerializeField] private float[] _color;
     private bool readyToExplode = true;
     private float timer = 0;
@@ -43,7 +44,11 @@ public class Bulb : MonoBehaviour
     private IEnumerator CreateExplosion()
     {
         GameObject explosion = Instantiate(_explosion, transform.position, Quaternion.identity);
-        yield return new WaitForSeconds((float)0.25);
+        yield return new WaitForSeconds((float)0.10);
+        explosion.GetComponent<SpriteRenderer>().sprite = _explosionSprites[0];
+        yield return new WaitForSeconds((float)0.10);
+        explosion.GetComponent<SpriteRenderer>().sprite = _explosionSprites[1];
+        yield return new WaitForSeconds((float)0.05);
         Destroy(explosion);
     }
 }

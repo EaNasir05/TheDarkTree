@@ -35,7 +35,7 @@ public class HumansGenerator : MonoBehaviour
 
     void Update()
     {
-        if (!GameManager.pause && !GameManager.dialogueActive)
+        if (!GameManager.pause && !GameManager.tutorial)
         {
             timer += Time.deltaTime;
             if (timer >= spawnCooldown)

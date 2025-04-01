@@ -188,6 +188,7 @@ MonoBehaviour:
   avoidanceDistance: 2
   level: 1
   _corpseSprite: {fileID: 21300000, guid: 4f6eaa008ea934f30b98b8dad283244a, type: 3}
+  elite: 0
 --- !u!114 &4509342259614948817
 MonoBehaviour:
   m_ObjectHideFlags: 0

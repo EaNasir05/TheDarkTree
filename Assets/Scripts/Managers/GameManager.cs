@@ -8,9 +8,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public static bool pause;
     public static bool selectingTrap;
-    public static bool dialogueActive;
+    public static bool tutorial;
     private int level = 0;
-    private int corpses = 0;
+    [SerializeField] private int corpses = 0;
     private int healthPoints = 100;
     [SerializeField] private GameObject _tree;
     [SerializeField] private int[] _milestones;
@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
         }
         pause = false;
         selectingTrap = false;
-        dialogueActive = false;
+        tutorial = false;
     }
 
     private void Update()
@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour
     public void RootInteraction(GameObject root)
     {
         currentRoot = root;
+        Cursor.visible = true;
         UserInterfaceManager.instance.OpenTrapsList();
         selectingTrap = true;
     }
@@ -213,6 +214,7 @@ public class GameManager : MonoBehaviour
     {
         UserInterfaceManager.instance.IncreaseLevel();
         level++;
+        Cursor.visible = true;
         pause = true;
         if (level < 10)
         {

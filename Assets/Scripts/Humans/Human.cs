@@ -13,6 +13,7 @@ public class Human : MonoBehaviour
     [SerializeField] private float avoidanceDistance;
     [SerializeField] private int level;
     [SerializeField] private Sprite _corpseSprite;
+    [SerializeField] private bool elite;
     private SpriteRenderer _spriteRenderer;
     private float movementSpeed;
     private float bramblesAttackCooldown;
@@ -44,6 +45,10 @@ public class Human : MonoBehaviour
     private void Start()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        if (elite)
+        {
+            _spriteRenderer.color = Color.magenta;
+        }
         GetComponent<StateMachine>().Initialise();
         movementSpeed = _maxMovementSpeed;
         bramblesAttackCooldown = 0;
@@ -67,7 +72,14 @@ public class Human : MonoBehaviour
             damagedSpriteCooldown += Time.deltaTime;
             if (damagedSpriteCooldown >= 0.15)
             {
-                _spriteRenderer.color = Color.white;
+                if (elite)
+                {
+                    _spriteRenderer.color = Color.magenta;
+                }
+                else
+                {
+                    _spriteRenderer.color = Color.white;
+                }
                 damagedSpriteCooldown = 0;
                 damaged = false;
             }
