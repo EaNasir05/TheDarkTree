@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 8733793898256570777}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -5, z: 0}
+  m_LocalPosition: {x: 1, y: -5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c91875062e1a4447087ec3ad03059d30, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e123e32fd09ce4ec684a7536a87c68f6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -178,17 +178,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collider: {fileID: 8744791356146735163}
-  heath: 25
-  damage: 4
-  _maxMovementSpeed: 2.5
-  attackCooldown: 0.5
+  heath: 20
+  damage: 3
+  _maxMovementSpeed: 3
+  attackCooldown: 0.75
   range: 1.5
-  power: 4
+  power: 2
   _tree: {fileID: 0}
   avoidanceDistance: 2
-  level: 9
-  _corpseSprite: {fileID: 21300000, guid: 21e19e68daae74d85a3fa07f532b8953, type: 3}
-  elite: 1
+  level: 8
+  _corpseSprite: {fileID: 21300000, guid: 66f97e75a65744dc9b5fa2623ff17c21, type: 3}
 --- !u!114 &7709614698233217331
 MonoBehaviour:
   m_ObjectHideFlags: 0

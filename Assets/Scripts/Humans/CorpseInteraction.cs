@@ -19,7 +19,7 @@ public class CorpseInteraction : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && interactable && !GameManager.pause)
+        if (Input.GetKeyDown(KeyCode.E) && interactable && !GameManager.pause && !GameManager.selectingTrap)
         {
             bool interacted = CorpseManager.instance.SetCorpse(gameObject);
             if (interacted)

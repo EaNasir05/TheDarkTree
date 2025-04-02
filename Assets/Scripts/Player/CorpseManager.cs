@@ -4,7 +4,7 @@ public class CorpseManager : MonoBehaviour
 {
     public static CorpseManager instance;
     [SerializeField] private Transform _corpsePoint;
-    private GameObject corpse;
+    [SerializeField] private GameObject corpse;
 
     private void Awake()
     {

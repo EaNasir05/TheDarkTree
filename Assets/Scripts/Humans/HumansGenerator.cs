@@ -9,7 +9,9 @@ public class HumansGenerator : MonoBehaviour
     [SerializeField] private float spawnCooldown;
     [SerializeField] private int[] _hordesPower;
     [SerializeField] private GameObject[] _humansPrefabs;
+    [SerializeField] private GameObject[] _eliteHumansPrefabs;
     [SerializeField] private Human[] _humans;
+    [SerializeField] private Human[] _eliteHumans;
     private int level;
     private List<GameObject> activeSpawnPoints;
     private float timer;
@@ -25,6 +27,7 @@ public class HumansGenerator : MonoBehaviour
         for (int x = 0; x < _humans.Length; x++)
         {
             _humans[x].SetTree(_tree);
+            _eliteHumans[x].SetTree(_tree);
         }
         timer = 0;
     }
@@ -81,6 +84,22 @@ public class HumansGenerator : MonoBehaviour
                 activeSpawnPoints.Add(_spawnPoints[9]);
                 _spawnPoints[8].SetActive(true);
                 _spawnPoints[9].SetActive(true);
+                break;
+            case 6:
+                _humans[0] = _eliteHumans[0];
+                _humansPrefabs[0] = _eliteHumansPrefabs[0];
+                _humans[1] = _eliteHumans[1];
+                _humansPrefabs[1] = _eliteHumansPrefabs[1];
+                break;
+            case 7:
+                _humans[2] = _eliteHumans[2];
+                _humansPrefabs[2] = _eliteHumansPrefabs[2];
+                break;
+            case 9:
+                _humans[3] = _eliteHumans[3];
+                _humansPrefabs[3] = _eliteHumansPrefabs[3];
+                _humans[4] = _eliteHumans[4];
+                _humansPrefabs[4] = _eliteHumansPrefabs[4];
                 break;
         }
     }
