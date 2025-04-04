@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static bool selectingTrap;
     public static bool tutorial;
     private int level = 0;
+    [SerializeField] private bool tutorialBattleground;
     [SerializeField] private int corpses = 0;
     private int healthPoints = 100;
     [SerializeField] private GameObject _tree;
@@ -57,9 +58,13 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
+    }
+
+    public void Start()
+    {
         pause = false;
         selectingTrap = false;
-        tutorial = false;
+        tutorial = tutorialBattleground;
     }
 
     private void Update()
