@@ -1,16 +1,34 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private GameObject _tutorialBox;
+
+    public void NewGame()
     {
-        
+        _tutorialBox.SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Settings()
     {
-        
+        //apre il menù di impostazioni
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
+    public void SetTutorial(bool tutorial)
+    {
+        if(tutorial)
+        {
+            SceneManager.LoadScene("Tutorial");
+        }
+        else
+        {
+            SceneManager.LoadScene("BattlegroundNoTutorial");
+        }
     }
 }
