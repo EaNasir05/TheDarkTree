@@ -34,6 +34,7 @@ public class TutorialMovementState : TutorialState
         float sqrDistance = (_target.position - human.transform.position).sqrMagnitude;
         if (sqrDistance <= human.GetRange() * human.GetRange())
         {
+            TutorialHumanGenerator.readyToGenerate = true;
             GameObject.Destroy(human.gameObject);
         }
     }

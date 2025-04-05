@@ -6,7 +6,6 @@ public class SoundEffectsManager : MonoBehaviour
     public static SoundEffectsManager instance;
     [SerializeField] private AudioSource soundEffectObject;
     private List<AudioSource> audios;
-    private bool feeding;
 
     private void Awake()
     {
@@ -19,7 +18,6 @@ public class SoundEffectsManager : MonoBehaviour
     private void Start()
     {
         audios = new List<AudioSource>();
-        feeding = false;
     }
 
     /*public void Resume()
@@ -57,31 +55,5 @@ public class SoundEffectsManager : MonoBehaviour
         }
         //audios.Remove(audioSource);
         Destroy(audioSource);
-    }
-
-    public void PlaySFXClipOnFeedRoot(AudioClip clip, Transform spawn, float volume)
-    {
-        if (!feeding)
-        {
-            feeding = true;
-            float time = 0;
-            bool ended = false;
-            AudioSource audioSource = Instantiate(soundEffectObject, spawn.position, Quaternion.identity);
-            //audios.Add(audioSource);
-            audioSource.clip = clip;
-            audioSource.volume = volume;
-            audioSource.Play();
-            while (!ended)
-            {
-                time += Time.deltaTime;
-                if (time >= clip.length)
-                {
-                    ended = true;
-                }
-            }
-            //audios.Remove(audioSource);
-            Destroy(audioSource);
-            feeding = false;
-        }
     }
 }

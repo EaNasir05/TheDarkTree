@@ -88,6 +88,7 @@ public class TutorialHuman : MonoBehaviour
 
     private void Die()
     {
+        TutorialGameManager.NextDialogue();
         GetComponent<TutorialStateMachine>().ChangeState(new TutorialDeadState());
         _spriteRenderer.sprite = _corpseSprite;
         gameObject.tag = "Corpse";

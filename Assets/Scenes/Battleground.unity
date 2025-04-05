@@ -3959,6 +3959,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorialBattleground: 1
   corpses: 0
+  _shootingCursor: {fileID: 2563389253194087475, guid: 062c7a92c8a12a14881f9f8b566a0289, type: 3}
   _tree: {fileID: 1458789172}
   _milestones: 010000000200000003000000050000000600000008000000090000000b0000000c0000000f000000
   _shootingSystem: {fileID: 574134163}
@@ -18173,7 +18174,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2036392419
   m_SortingLayer: -1
-  m_SortingOrder: -2
+  m_SortingOrder: -3
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.4792453, g: 0.38528064, b: 0.179943, a: 1}
   m_FlipX: 0

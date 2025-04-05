@@ -65,6 +65,10 @@ public class GameManager : MonoBehaviour
         pause = false;
         selectingTrap = false;
         tutorial = tutorialBattleground;
+        if (tutorial)
+        {
+            Cursor.visible = false;
+        }
     }
 
     private void Update()
