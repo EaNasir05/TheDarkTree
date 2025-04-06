@@ -6,6 +6,7 @@ public class SoundEffectsManager : MonoBehaviour
     public static SoundEffectsManager instance;
     [SerializeField] private AudioSource soundEffectObject;
     private List<AudioSource> audios;
+    private AudioSource currentDialogue;
 
     private void Awake()
     {
@@ -45,6 +46,33 @@ public class SoundEffectsManager : MonoBehaviour
         audioSource.clip = clip;
         audioSource.volume = volume;
         audioSource.Play();
+        while (!ended) // && !GameManager.pause
+        {
+            time += Time.deltaTime;
+            if (time >= clip.length)
+            {
+                ended = true;
+            }
+        }
+        //audios.Remove(audioSource);
+        Destroy(audioSource);
+    }
+
+    public void PlayDialogue(AudioClip clip, Transform spawn, float volume)
+    {
+        if (currentDialogue != null)
+        {
+            //audios.Remove(currentDialogue);
+            currentDialogue.Stop();
+        }
+        float time = 0;
+        bool ended = false;
+        AudioSource audioSource = Instantiate(soundEffectObject, spawn.position, Quaternion.identity);
+        //audios.Add(audioSource);
+        audioSource.clip = clip;
+        audioSource.volume = volume;
+        currentDialogue = audioSource;
+        audioSource.Play();
         while (!ended)
         {
             time += Time.deltaTime;
@@ -55,5 +83,6 @@ public class SoundEffectsManager : MonoBehaviour
         }
         //audios.Remove(audioSource);
         Destroy(audioSource);
+        currentDialogue = null;
     }
 }
