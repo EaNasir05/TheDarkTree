@@ -5,18 +5,6 @@ TextureImporter:
   - first:
       213: -5805051573516262796
     second: mouse_click_0
-  - first:
-      213: 2858280485627320601
-    second: mouse_click_1
-  - first:
-      213: 1814390833751808843
-    second: mouse_click_2
-  - first:
-      213: -4230524216701582843
-    second: mouse_click_3
-  - first:
-      213: -4202033262675651553
-    second: mouse_click_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -115,10 +103,10 @@ TextureImporter:
       name: mouse_click_0
       rect:
         serializedVersion: 2
-        x: 129
-        y: 313
-        width: 16
-        height: 17
+        x: 121
+        y: 203
+        width: 101
+        height: 136
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -129,94 +117,6 @@ TextureImporter:
       bones: []
       spriteID: 472adb1b950507fa0800000000000000
       internalID: -5805051573516262796
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mouse_click_1
-      rect:
-        serializedVersion: 2
-        x: 138
-        y: 203
-        width: 68
-        height: 110
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9195f3635f6aaa720800000000000000
-      internalID: 2858280485627320601
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mouse_click_2
-      rect:
-        serializedVersion: 2
-        x: 147
-        y: 313
-        width: 7
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b4b5089a9d20e2910800000000000000
-      internalID: 1814390833751808843
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mouse_click_3
-      rect:
-        serializedVersion: 2
-        x: 155
-        y: 313
-        width: 17
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 50280d1a3a82a45c0800000000000000
-      internalID: -4230524216701582843
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mouse_click_4
-      rect:
-        serializedVersion: 2
-        x: 121
-        y: 305
-        width: 24
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f1497dbc2016fa5c0800000000000000
-      internalID: -4202033262675651553
       vertices: []
       indices: 
       edges: []

@@ -5,7 +5,6 @@ public class SoundEffectsManager : MonoBehaviour
 {
     public static SoundEffectsManager instance;
     [SerializeField] private AudioSource soundEffectObject;
-    private List<AudioSource> audios;
     private AudioSource currentDialogue;
 
     private void Awake()
@@ -16,37 +15,15 @@ public class SoundEffectsManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        audios = new List<AudioSource>();
-    }
-
-    /*public void Resume()
-    {
-        foreach (AudioSource audioSource in audios)
-        {
-            audioSource.UnPause();
-        }
-    }
-
-    public void Pause()
-    {
-        foreach(AudioSource audioSource in audios)
-        {
-            audioSource.Pause();
-        }
-    }*/
-
-    public void PlaySFXClip(AudioClip clip, Transform spawn, float volume)
+    public void PlaySFXClip(AudioClip clip, float volume)
     {
         float time = 0;
         bool ended = false;
-        AudioSource audioSource = Instantiate(soundEffectObject, spawn.position, Quaternion.identity);
-        //audios.Add(audioSource);
+        AudioSource audioSource = Instantiate(soundEffectObject, new Vector2(0, 0), Quaternion.identity);
         audioSource.clip = clip;
         audioSource.volume = volume;
         audioSource.Play();
-        while (!ended) // && !GameManager.pause
+        while (!ended)
         {
             time += Time.deltaTime;
             if (time >= clip.length)
@@ -54,21 +31,18 @@ public class SoundEffectsManager : MonoBehaviour
                 ended = true;
             }
         }
-        //audios.Remove(audioSource);
         Destroy(audioSource);
     }
 
-    public void PlayDialogue(AudioClip clip, Transform spawn, float volume)
+    public void PlayDialogue(AudioClip clip, float volume)
     {
         if (currentDialogue != null)
         {
-            //audios.Remove(currentDialogue);
             currentDialogue.Stop();
         }
         float time = 0;
         bool ended = false;
-        AudioSource audioSource = Instantiate(soundEffectObject, spawn.position, Quaternion.identity);
-        //audios.Add(audioSource);
+        AudioSource audioSource = Instantiate(soundEffectObject, new Vector2(0, 0), Quaternion.identity);
         audioSource.clip = clip;
         audioSource.volume = volume;
         currentDialogue = audioSource;
@@ -81,7 +55,6 @@ public class SoundEffectsManager : MonoBehaviour
                 ended = true;
             }
         }
-        //audios.Remove(audioSource);
         Destroy(audioSource);
         currentDialogue = null;
     }

@@ -501,6 +501,9 @@ MonoBehaviour:
   _objectiveDirection: {fileID: 713623142}
   _exit: {fileID: 808832235}
   _keyImage: {fileID: 680793819}
+  _wasdSprite: {fileID: -2262122895464096801, guid: a3a0c274922f3034c835eb71c36c64e0, type: 3}
+  _eSprite: {fileID: 6626051464634953487, guid: c6a4fa36ab5fb9f488ddf3a0839908a5, type: 3}
+  _clickSprite: {fileID: -5805051573516262796, guid: 45101f1cc67240841bfc38194ac42bb4, type: 3}
 --- !u!1 &149430574
 GameObject:
   m_ObjectHideFlags: 0
@@ -1560,7 +1563,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: (vai da vorrak con il cadavere)
+  m_text: (prendi il cadavere e vai da vorrak)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 49af4cf69d681f3499983514359b8f86, type: 2}
   m_sharedMaterial: {fileID: 7349638696784349729, guid: 49af4cf69d681f3499983514359b8f86, type: 2}
@@ -2899,7 +2902,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -3622,7 +3625,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -7487,7 +7490,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0

@@ -6,6 +6,8 @@ public class CorpseInteraction : MonoBehaviour
     private Color _interactableColor;
     private bool interactable;
 
+    public bool GetInteractable() { return interactable; }
+
     private void Awake()
     {
         _interactableColor = Color.yellow;

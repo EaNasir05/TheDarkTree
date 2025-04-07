@@ -75,6 +75,10 @@ public class Root : MonoBehaviour
             if (CorpseManager.instance.GetCorpse() != null || trap == null)
             {
                 _spriteRenderer.sprite = _interactableSprite;
+                if (GameManager.tutorial)
+                {
+                    GameManager.instance.RootTutorialCheck();
+                }
             }
             else
             {

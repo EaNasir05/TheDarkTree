@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Linq.Expressions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -51,6 +53,11 @@ public class GameManager : MonoBehaviour
     private GameObject currentRoot;
     private int[] trapsGenerated;
     private int[] enhancementsGenerated;
+    [SerializeField] private SpriteRenderer _keyImage;
+    [SerializeField] private Sprite _qKeySprite;
+    private GameObject _dialogues;
+    private int currentDialogue;
+    private bool nextDialogue;
 
     private void Awake()
     {
@@ -68,7 +75,12 @@ public class GameManager : MonoBehaviour
         if (tutorial)
         {
             Cursor.visible = false;
+            _dialogues = GameObject.FindGameObjectWithTag("Dialogues");
+            currentDialogue = 0;
+            nextDialogue = false;
+            StartCoroutine("StartDialogue");
         }
+
     }
 
     private void Update()
@@ -76,6 +88,13 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             pause = !pause;
+        }
+        if (Input.GetKeyDown(KeyCode.Space) && (currentDialogue == 2 || currentDialogue == 3 || currentDialogue == 5 || currentDialogue == 6))
+        {
+            if (!nextDialogue)
+            {
+                nextDialogue = true;
+            }
         }
     }
 
@@ -95,6 +114,15 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
         UserInterfaceManager.instance.OpenTrapsList();
         selectingTrap = true;
+        pause = true;
+    }
+
+    public void RootTutorialCheck()
+    {
+        if (currentDialogue == 1)
+        {
+            _keyImage.sprite = _qKeySprite;
+        }
     }
 
     public void TrapSelection(int index)
@@ -104,8 +132,13 @@ public class GameManager : MonoBehaviour
             currentRoot.GetComponent<Root>().PlaceTrap(index);
             trapsAmounts[index]--;
             selectingTrap = false;
+            pause = false;
             UserInterfaceManager.instance.CloseTrapsList();
             UserInterfaceManager.instance.UpdateTrapsList(index, trapsAmounts[index]);
+            if (tutorial && currentDialogue == 4)
+            {
+                nextDialogue = true;
+            }
         }
         else
         {
@@ -160,6 +193,12 @@ public class GameManager : MonoBehaviour
         }
         AddRoots();
         HumansGenerator.instance.LevelUp();
+        if (tutorial)
+        {
+            currentDialogue = 2;
+            _keyImage.sprite = null;
+            nextDialogue = true;
+        }
     }
 
     private void AddRoots()
@@ -225,6 +264,11 @@ public class GameManager : MonoBehaviour
         level++;
         Cursor.visible = true;
         pause = true;
+        if (tutorial)
+        {
+            _dialogues.transform.GetChild(0).gameObject.SetActive(false);
+            _dialogues.transform.GetChild(6).gameObject.SetActive(false);
+        }
         if (level < 10)
         {
             UserInterfaceManager.instance.HideHP();
@@ -249,5 +293,65 @@ public class GameManager : MonoBehaviour
             LevelUp();
             corpses = 0;
         }
+    }
+
+    private IEnumerator StartDialogue()
+    {
+        yield return new WaitForSeconds(1);
+        currentDialogue = 1;
+        _dialogues.transform.GetChild(0).gameObject.SetActive(true);
+        //parte audio
+        yield return new WaitForSeconds(5);
+        _dialogues.transform.GetChild(6).gameObject.SetActive(true);
+        nextDialogue = false;
+        yield return new WaitUntil(() => nextDialogue == true);
+        yield return new WaitForSeconds(1);
+        _dialogues.transform.GetChild(1).gameObject.SetActive(true);
+        //parte audio
+        yield return new WaitForSeconds(5);
+        _dialogues.transform.GetChild(7).gameObject.SetActive(true);
+        nextDialogue = false;
+        yield return new WaitUntil(() => nextDialogue == true);
+        _dialogues.transform.GetChild(1).gameObject.SetActive(false);
+        _dialogues.transform.GetChild(7).gameObject.SetActive(false);
+        currentDialogue = 3;
+        _dialogues.transform.GetChild(2).gameObject.SetActive(true);
+        //parte audio
+        yield return new WaitForSeconds(5);
+        _dialogues.transform.GetChild(7).gameObject.SetActive(true);
+        nextDialogue = false;
+        yield return new WaitUntil(() => nextDialogue == true);
+        _dialogues.transform.GetChild(2).gameObject.SetActive(false);
+        _dialogues.transform.GetChild(7).gameObject.SetActive(false);
+        currentDialogue = 4;
+        _dialogues.transform.GetChild(3).gameObject.SetActive(true);
+        //parte audio
+        yield return new WaitForSeconds(5);
+        _dialogues.transform.GetChild(8).gameObject.SetActive(true);
+        nextDialogue = false;
+        yield return new WaitUntil(() => nextDialogue == true);
+        _dialogues.transform.GetChild(3).gameObject.SetActive(false);
+        _dialogues.transform.GetChild(8).gameObject.SetActive(false);
+        currentDialogue = 5;
+        yield return new WaitForSeconds(1);
+        _dialogues.transform.GetChild(4).gameObject.SetActive(true);
+        //parte audio
+        yield return new WaitForSeconds(5);
+        _dialogues.transform.GetChild(7).gameObject.SetActive(true);
+        nextDialogue = false;
+        yield return new WaitUntil(() => nextDialogue == true);
+        _dialogues.transform.GetChild(4).gameObject.SetActive(false);
+        _dialogues.transform.GetChild(7).gameObject.SetActive(false);
+        currentDialogue = 6;
+        _dialogues.transform.GetChild(5).gameObject.SetActive(true);
+        //parte audio
+        yield return new WaitForSeconds(5);
+        _dialogues.transform.GetChild(7).gameObject.SetActive(true);
+        nextDialogue = false;
+        yield return new WaitUntil(() => nextDialogue == true);
+        _dialogues.transform.GetChild(5).gameObject.SetActive(false);
+        _dialogues.transform.GetChild(7).gameObject.SetActive(false);
+        yield return new WaitForSeconds(1);
+        tutorial = false;
     }
 }

@@ -9,6 +9,8 @@ TagManager:
   - Corpse
   - Fireball
   - TutorialEnemy
+  - Tutorial Enemy
+  - Dialogues
   layers:
   - Default
   - TransparentFX
