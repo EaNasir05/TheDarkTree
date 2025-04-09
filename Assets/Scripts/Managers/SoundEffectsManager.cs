@@ -58,4 +58,28 @@ public class SoundEffectsManager : MonoBehaviour
         Destroy(audioSource);
         currentDialogue = null;
     }
+
+    public void PlaySFXClipOnFeed(AudioClip clip, float volume)
+    {
+        if (currentDialogue == null)
+        {
+            float time = 0;
+            bool ended = false;
+            AudioSource audioSource = Instantiate(soundEffectObject, new Vector2(0, 0), Quaternion.identity);
+            audioSource.clip = clip;
+            audioSource.volume = volume;
+            currentDialogue = audioSource;
+            audioSource.Play();
+            while (!ended)
+            {
+                time += Time.deltaTime;
+                if (time >= clip.length)
+                {
+                    ended = true;
+                }
+            }
+            Destroy(audioSource);
+            currentDialogue = null;
+        }
+    }
 }

@@ -11,6 +11,7 @@ public class TutorialGameManager : MonoBehaviour
     [SerializeField] private Sprite _wasdSprite;
     [SerializeField] private Sprite _eSprite;
     [SerializeField] private Sprite _clickSprite;
+    [SerializeField] private Texture2D _shootingCursor;
     private CorpseInteraction _corpse;
     private static bool next;
     public static int currentDialogue;
@@ -23,6 +24,9 @@ public class TutorialGameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        GameManager.selectingTrap = true;
+        Cursor.SetCursor(_shootingCursor, Vector2.zero, CursorMode.Auto);
+        Cursor.visible = false;
     }
 
     private void Start()
@@ -32,6 +36,8 @@ public class TutorialGameManager : MonoBehaviour
         dialogueStarted = false;
         moved = false;
         canGo = false;
+        Cursor.SetCursor(_shootingCursor, Vector2.zero, CursorMode.Auto);
+        Cursor.visible = false;
     }
 
     private void Update()
@@ -52,7 +58,7 @@ public class TutorialGameManager : MonoBehaviour
                 next = true;
             }
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0) && currentDialogue == 3)
+        if (Input.GetKey(KeyCode.Mouse0) && currentDialogue == 3)
         {
             if (_keyImage.sprite == _clickSprite)
             {
@@ -114,6 +120,8 @@ public class TutorialGameManager : MonoBehaviour
         _dialogues.transform.GetChild(1).gameObject.SetActive(true);
         //parte audio
         yield return new WaitForSeconds(5);
+        GameManager.selectingTrap = false;
+        Cursor.visible = true;
         _dialogues.transform.GetChild(4).gameObject.SetActive(true);
         _keyImage.sprite = _clickSprite;
         next = false;

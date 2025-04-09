@@ -7,6 +7,7 @@ public class UserInterfaceManager : MonoBehaviour
     public static UserInterfaceManager instance;
     [SerializeField] private TMP_Text _healthPoints;
     [SerializeField] private TMP_Text _level;
+    [SerializeField] private TMP_Text _trapsCount;
     [SerializeField] private GameObject _trapsList;
     [SerializeField] private GameObject _levelUpTraps;
     [SerializeField] private GameObject _levelUpEnhancements;
@@ -43,6 +44,20 @@ public class UserInterfaceManager : MonoBehaviour
         int currentLevel = int.Parse(_level.text);
         currentLevel++;
         _level.text = currentLevel.ToString();
+    }
+
+    public void IncreaseTrapsCount()
+    {
+        int count = int.Parse(_trapsCount.text);
+        count++;
+        _trapsCount.text = count.ToString();
+    }
+
+    public void DecreaseTrapsCount()
+    {
+        int count = int.Parse(_trapsCount.text);
+        count--;
+        _trapsCount.text = count.ToString();
     }
 
     public void DecreaseHP(int damage)

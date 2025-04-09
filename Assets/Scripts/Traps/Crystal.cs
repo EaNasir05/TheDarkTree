@@ -29,7 +29,7 @@ public class Crystal : MonoBehaviour
                 if (timer >= buffDuration)
                 {
                     buffEnded = true;
-                    _shootingSystem.ChangeFireballDamage(-3);
+                    _shootingSystem.ChangeFireballSpeed(-5);
                 }
             }
             else
@@ -51,7 +51,7 @@ public class Crystal : MonoBehaviour
         {
             if (readyToBuff)
             {
-                _shootingSystem.ChangeFireballDamage(3);
+                _shootingSystem.ChangeFireballSpeed(5);
                 buffEnded = false;
                 readyToBuff = false;
                 _spriteRenderer.color = Color.gray;

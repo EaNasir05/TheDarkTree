@@ -16,6 +16,7 @@ public class Shooting : MonoBehaviour
     public float GetFireballSpeed() { return fireballSpeed; }
     public float GetFireballSize() { return fireballSize; }
     public void ChangeFireballDamage(int value) { fireballDamage += value; }
+    public void ChangeFireballSpeed(int value) { fireballSpeed += value; }
     public void ChangeFireballSize(float value) { fireballSize += value; }
 
     public void IncreaseFireRate()
