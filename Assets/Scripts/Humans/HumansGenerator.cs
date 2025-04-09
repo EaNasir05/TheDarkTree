@@ -12,6 +12,7 @@ public class HumansGenerator : MonoBehaviour
     [SerializeField] private GameObject[] _eliteHumansPrefabs;
     [SerializeField] private Human[] _humans;
     [SerializeField] private Human[] _eliteHumans;
+    [SerializeField] private AudioClip _spawnPointAudio;
     private int level;
     private List<GameObject> activeSpawnPoints;
     private float timer;
@@ -58,30 +59,35 @@ public class HumansGenerator : MonoBehaviour
             case 1:
                 activeSpawnPoints.Add(_spawnPoints[0]);
                 activeSpawnPoints.Add(_spawnPoints[1]);
+                SoundEffectsManager.instance.PlaySFXClip(_spawnPointAudio, (float)0.5);
                 _spawnPoints[0].SetActive(true);
                 _spawnPoints[1].SetActive(true);
                 break;
             case 2:
                 activeSpawnPoints.Add(_spawnPoints[2]);
                 activeSpawnPoints.Add(_spawnPoints[3]);
+                SoundEffectsManager.instance.PlaySFXClip(_spawnPointAudio, (float)0.5);
                 _spawnPoints[2].SetActive(true);
                 _spawnPoints[3].SetActive(true);
                 break;
             case 3:
                 activeSpawnPoints.Add(_spawnPoints[4]);
                 activeSpawnPoints.Add(_spawnPoints[5]);
+                SoundEffectsManager.instance.PlaySFXClip(_spawnPointAudio, (float)0.5);
                 _spawnPoints[4].SetActive(true);
                 _spawnPoints[5].SetActive(true);
                 break;
             case 4:
                 activeSpawnPoints.Add(_spawnPoints[6]);
                 activeSpawnPoints.Add(_spawnPoints[7]);
+                SoundEffectsManager.instance.PlaySFXClip(_spawnPointAudio, (float)0.5);
                 _spawnPoints[6].SetActive(true);
                 _spawnPoints[7].SetActive(true);
                 break;
             case 5:
                 activeSpawnPoints.Add(_spawnPoints[8]);
                 activeSpawnPoints.Add(_spawnPoints[9]);
+                SoundEffectsManager.instance.PlaySFXClip(_spawnPointAudio, (float)0.5);
                 _spawnPoints[8].SetActive(true);
                 _spawnPoints[9].SetActive(true);
                 break;

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class SoundEffectsManager : MonoBehaviour
 {
@@ -17,21 +18,24 @@ public class SoundEffectsManager : MonoBehaviour
 
     public void PlaySFXClip(AudioClip clip, float volume)
     {
-        float time = 0;
-        bool ended = false;
-        AudioSource audioSource = Instantiate(soundEffectObject, new Vector2(0, 0), Quaternion.identity);
-        audioSource.clip = clip;
-        audioSource.volume = volume;
-        audioSource.Play();
-        while (!ended)
-        {
-            time += Time.deltaTime;
-            if (time >= clip.length)
-            {
-                ended = true;
-            }
-        }
-        Destroy(audioSource);
+        AudioSource newSource = Instantiate(soundEffectObject, Vector3.zero, Quaternion.identity);
+        newSource.clip = clip;
+        newSource.volume = volume;
+        newSource.Play();
+        StartCoroutine(DestroyAfterPlay(newSource));
+    }
+
+    private IEnumerator DestroyAfterPlay(AudioSource source)
+    {
+        yield return new WaitForSeconds(source.clip.length);
+        Destroy(source.gameObject);
+    }
+
+    private IEnumerator DestroyDialogueAfterPlay(AudioSource source)
+    {
+        yield return new WaitForSeconds(source.clip.length);
+        Destroy(source.gameObject);
+        currentDialogue = null;
     }
 
     public void PlayDialogue(AudioClip clip, float volume)
@@ -42,47 +46,27 @@ public class SoundEffectsManager : MonoBehaviour
         }
         if (clip != null)
         {
-            float time = 0;
-            bool ended = false;
-            AudioSource audioSource = Instantiate(soundEffectObject, new Vector2(0, 0), Quaternion.identity);
-            audioSource.clip = clip;
-            audioSource.volume = volume;
-            currentDialogue = audioSource;
-            audioSource.Play();
-            while (!ended)
-            {
-                time += Time.deltaTime;
-                if (time >= clip.length)
-                {
-                    ended = true;
-                }
-            }
-            Destroy(audioSource);
+            AudioSource newSource = Instantiate(soundEffectObject, Vector3.zero, Quaternion.identity);
+            newSource.clip = clip;
+            newSource.volume = volume;
+            newSource.Play();
+            StartCoroutine(DestroyDialogueAfterPlay(newSource));
         }
-        currentDialogue = null;
+        else
+        {
+            currentDialogue = null;
+        }
     }
 
     public void PlaySFXClipOnFeed(AudioClip clip, float volume)
     {
         if (currentDialogue == null)
         {
-            float time = 0;
-            bool ended = false;
-            AudioSource audioSource = Instantiate(soundEffectObject, new Vector2(0, 0), Quaternion.identity);
-            audioSource.clip = clip;
-            audioSource.volume = volume;
-            currentDialogue = audioSource;
-            audioSource.Play();
-            while (!ended)
-            {
-                time += Time.deltaTime;
-                if (time >= clip.length)
-                {
-                    ended = true;
-                }
-            }
-            Destroy(audioSource);
-            currentDialogue = null;
+            AudioSource newSource = Instantiate(soundEffectObject, Vector3.zero, Quaternion.identity);
+            newSource.clip = clip;
+            newSource.volume = volume;
+            newSource.Play();
+            StartCoroutine(DestroyDialogueAfterPlay(newSource));
         }
     }
 }

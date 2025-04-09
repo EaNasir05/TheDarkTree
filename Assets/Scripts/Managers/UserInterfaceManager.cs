@@ -7,6 +7,7 @@ public class UserInterfaceManager : MonoBehaviour
     public static UserInterfaceManager instance;
     [SerializeField] private TMP_Text _healthPoints;
     [SerializeField] private TMP_Text _level;
+    [SerializeField] private Slider _corpsesCount;
     [SerializeField] private TMP_Text _trapsCount;
     [SerializeField] private GameObject _trapsList;
     [SerializeField] private GameObject _levelUpTraps;
@@ -44,6 +45,21 @@ public class UserInterfaceManager : MonoBehaviour
         int currentLevel = int.Parse(_level.text);
         currentLevel++;
         _level.text = currentLevel.ToString();
+    }
+
+    public void ResetCorpsesCount()
+    {
+        _corpsesCount.value = 0;
+    }
+
+    public void IncreaseCorpsesCount()
+    {
+        _corpsesCount.value++;
+    }
+
+    public void SetCorpsesMaxValue(int value)
+    {
+        _corpsesCount.maxValue = value;
     }
 
     public void IncreaseTrapsCount()

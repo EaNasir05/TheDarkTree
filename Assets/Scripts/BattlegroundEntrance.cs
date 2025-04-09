@@ -12,6 +12,7 @@ public class BattlegroundEntrance : MonoBehaviour
             collision.transform.position = new Vector2((float)-12.25, (float)-1.66);
             _camera.transform.position = new Vector3(0, 1, -15);
             _camera.orthographicSize = 11;
+            UserInterfaceManager.instance.ShowHP();
         }
     }
 }

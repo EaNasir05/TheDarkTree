@@ -8,6 +8,8 @@ public class Bulb : MonoBehaviour
     [SerializeField] private float explosionCooldown;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Sprite[] _explosionSprites;
+    [SerializeField] private AudioClip _explosionAudio;
+    [SerializeField] private float _explosionVolume;
     [SerializeField] private float[] _color;
     private bool readyToExplode = true;
     private float timer = 0;
@@ -43,6 +45,7 @@ public class Bulb : MonoBehaviour
 
     private IEnumerator CreateExplosion()
     {
+        SoundEffectsManager.instance.PlaySFXClip(_explosionAudio, _explosionVolume);
         GameObject explosion = Instantiate(_explosion, transform.position, Quaternion.identity);
         yield return new WaitForSeconds((float)0.10);
         explosion.GetComponent<SpriteRenderer>().sprite = _explosionSprites[0];

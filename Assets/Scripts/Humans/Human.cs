@@ -14,7 +14,7 @@ public class Human : MonoBehaviour
     [SerializeField] private int level;
     [SerializeField] private Sprite _corpseSprite;
     private SpriteRenderer _spriteRenderer;
-    private float movementSpeed;
+    [SerializeField] private float movementSpeed;
     private float bramblesAttackCooldown;
     private bool insideBrambles;
     private bool damaged;

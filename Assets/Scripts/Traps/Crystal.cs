@@ -8,6 +8,7 @@ public class Crystal : MonoBehaviour
     [SerializeField] private float buffCooldown;
     [SerializeField] private float buffDuration;
     [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private AudioClip _activationAudio;
     private bool readyToBuff;
     private bool buffEnded;
     private float timer;
@@ -51,6 +52,7 @@ public class Crystal : MonoBehaviour
         {
             if (readyToBuff)
             {
+                SoundEffectsManager.instance.PlaySFXClip(_activationAudio, (float)0.4);
                 _shootingSystem.ChangeFireballSpeed(5);
                 buffEnded = false;
                 readyToBuff = false;

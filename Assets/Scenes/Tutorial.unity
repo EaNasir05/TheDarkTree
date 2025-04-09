@@ -5693,6 +5693,7 @@ MonoBehaviour:
   fireballDamage: 5
   fireballSpeed: 10
   fireballSize: 0.5
+  _fireballAudio: {fileID: 8300000, guid: daebaad1feaed5940994372d061e88b4, type: 3}
 --- !u!114 &1310406163
 MonoBehaviour:
   m_ObjectHideFlags: 0

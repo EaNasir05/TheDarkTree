@@ -9,6 +9,7 @@ public class Shooting : MonoBehaviour
     [SerializeField] private int fireballDamage;
     [SerializeField] private float fireballSpeed;
     [SerializeField] private float fireballSize;
+    [SerializeField] private AudioClip _fireballAudio;
     private int fireRateLevel;
     private bool readyToFire;
 
@@ -81,6 +82,7 @@ public class Shooting : MonoBehaviour
         if (readyToFire)
         {
             readyToFire = false;
+            SoundEffectsManager.instance.PlaySFXClip(_fireballAudio, (float)0.25);
             Instantiate(_fireball, _fireballSpawnPoint.position, Quaternion.identity);
             if(fireballCooldown >= 0.05)
             {

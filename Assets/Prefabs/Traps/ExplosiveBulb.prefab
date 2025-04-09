@@ -144,6 +144,8 @@ MonoBehaviour:
   _explosionSprites:
   - {fileID: -523584915, guid: 07a7d4c8ffe41f1439f289296d45b977, type: 3}
   - {fileID: 500476928, guid: 07a7d4c8ffe41f1439f289296d45b977, type: 3}
+  _explosionAudio: {fileID: 8300000, guid: e493300930c6fc343a69149e63784b1d, type: 3}
+  _explosionVolume: 0.3
   _color:
   - 1
   - 0.55

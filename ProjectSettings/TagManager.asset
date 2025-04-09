@@ -12,6 +12,7 @@ TagManager:
   - Tutorial Enemy
   - Dialogues
   - Tree
+  - Objectives
   layers:
   - Default
   - TransparentFX
