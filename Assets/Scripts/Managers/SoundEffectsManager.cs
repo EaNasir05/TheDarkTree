@@ -40,22 +40,25 @@ public class SoundEffectsManager : MonoBehaviour
         {
             currentDialogue.Stop();
         }
-        float time = 0;
-        bool ended = false;
-        AudioSource audioSource = Instantiate(soundEffectObject, new Vector2(0, 0), Quaternion.identity);
-        audioSource.clip = clip;
-        audioSource.volume = volume;
-        currentDialogue = audioSource;
-        audioSource.Play();
-        while (!ended)
+        if (clip != null)
         {
-            time += Time.deltaTime;
-            if (time >= clip.length)
+            float time = 0;
+            bool ended = false;
+            AudioSource audioSource = Instantiate(soundEffectObject, new Vector2(0, 0), Quaternion.identity);
+            audioSource.clip = clip;
+            audioSource.volume = volume;
+            currentDialogue = audioSource;
+            audioSource.Play();
+            while (!ended)
             {
-                ended = true;
+                time += Time.deltaTime;
+                if (time >= clip.length)
+                {
+                    ended = true;
+                }
             }
+            Destroy(audioSource);
         }
-        Destroy(audioSource);
         currentDialogue = null;
     }
 

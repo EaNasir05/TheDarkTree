@@ -6258,6 +6258,7 @@ MonoBehaviour:
   _dialogueWall: {fileID: 284477445}
   _tutorialRoot: {fileID: 771242021}
   _battlegroundEntrance: {fileID: 1217861296}
+  _objectiveDirection: {fileID: 531631668}
 --- !u!4 &485288478
 Transform:
   m_ObjectHideFlags: 0

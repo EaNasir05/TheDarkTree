@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _dialogueWall;
     [SerializeField] private GameObject _tutorialRoot;
     [SerializeField] private GameObject _battlegroundEntrance;
+    [SerializeField] private GameObject _objectiveDirection;
     private GameObject _dialogues;
     private int currentDialogue;
     private bool nextDialogue;
