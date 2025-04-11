@@ -57,8 +57,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _keyImage;
     [SerializeField] private GameObject _dialogueWall;
     [SerializeField] private GameObject _tutorialRoot;
+    [SerializeField] private GameObject _tutorialSpawnPoint;
     [SerializeField] private GameObject _battlegroundEntrance;
     [SerializeField] private GameObject _objectiveDirection;
+    [SerializeField] private GameObject _tutorialUIBackground;
     private GameObject _dialogues;
     private GameObject _objectives;
     private int currentDialogue;
@@ -66,6 +68,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioClip[] _feedRootAudio;
     [SerializeField] private AudioClip _treeDamagedAudio;
     [SerializeField] private AudioClip _levelUpAudio;
+    [SerializeField] private AudioClip _spawnPointAudio;
 
     private void Awake()
     {
@@ -82,6 +85,8 @@ public class GameManager : MonoBehaviour
         tutorial = tutorialBattleground;
         if (tutorial)
         {
+            TutorialHumanGenerator.readyToGenerate = false;
+            TutorialHumanGenerator.useCooldown = true;
             Cursor.visible = false;
             _dialogues = GameObject.FindGameObjectWithTag("Dialogues");
             _objectives = GameObject.FindGameObjectWithTag("Objectives");
@@ -99,7 +104,7 @@ public class GameManager : MonoBehaviour
         {
             pause = !pause;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && (currentDialogue == 2 || currentDialogue == 3 || currentDialogue == 5 || currentDialogue == 6))
+        if (Input.GetKeyDown(KeyCode.Space) && tutorial && (currentDialogue == 2 || currentDialogue == 4 || currentDialogue == 5 || currentDialogue == 6 || currentDialogue == 8 || currentDialogue == 10 || currentDialogue == 11 || currentDialogue == 12))
         {
             if (!nextDialogue)
             {
@@ -144,7 +149,7 @@ public class GameManager : MonoBehaviour
 
     public void RootTutorialCheck()
     {
-        if (currentDialogue == 1 || currentDialogue == 4)
+        if (currentDialogue == 1 || currentDialogue == 9)
         {
             _keyImage.SetActive(true);
         }
@@ -187,10 +192,6 @@ public class GameManager : MonoBehaviour
         UserInterfaceManager.instance.CloseLevelUpTraps();
         UserInterfaceManager.instance.IncreaseTrapsCount();
         UserInterfaceManager.instance.OpenLevelUpEnhancements();
-        if (tutorial)
-        {
-            _objectives.transform.GetChild(0).gameObject.SetActive(false);
-        }
     }
 
     public void BuffPlayer(int index)
@@ -226,8 +227,6 @@ public class GameManager : MonoBehaviour
         AddRoots();
         if (tutorial)
         {
-            currentDialogue = 2;
-            _keyImage.SetActive(false);
             nextDialogue = true;
         }
         else
@@ -298,30 +297,47 @@ public class GameManager : MonoBehaviour
         SoundEffectsManager.instance.PlaySFXClip(_levelUpAudio, 1);
         UserInterfaceManager.instance.IncreaseLevel();
         level++;
-        Cursor.visible = true;
         pause = true;
-        ResetCursor();
         if (tutorial)
         {
-            _dialogues.transform.GetChild(0).gameObject.SetActive(false);
-            _objectives.transform.GetChild(0).gameObject.SetActive(false);
-        }
-        if (level < 10)
-        {
-            UserInterfaceManager.instance.ResetCorpsesCount();
-            UserInterfaceManager.instance.SetCorpsesMaxValue(_milestones[level]);
-            UserInterfaceManager.instance.HideHP();
-            UserInterfaceManager.instance.HideLevel();
-            trapsGenerated = GenerateTraps();
-            enhancementsGenerated = GenerateEnhancements();
-            UserInterfaceManager.instance.GenerateLevelUpTraps(_trapsNames[trapsGenerated[0]], _trapsNames[trapsGenerated[1]], _trapsDescriptions[trapsGenerated[0]], _trapsDescriptions[trapsGenerated[1]]);
-            UserInterfaceManager.instance.GenerateLevelUpEnhancements(_enhancementsNames[enhancementsGenerated[0]], _enhancementsNames[enhancementsGenerated[1]], _enhancementsDescriptions[enhancementsGenerated[0]], _enhancementsDescriptions[enhancementsGenerated[1]]);
-            UserInterfaceManager.instance.OpenLevelUpTraps();
+            nextDialogue = true;
         }
         else
         {
-            SceneManager.LoadScene("Victory");
+            ResetCursor();
+            Cursor.visible = true;
+            if (level < 10)
+            {
+                UserInterfaceManager.instance.ResetCorpsesCount();
+                UserInterfaceManager.instance.SetCorpsesMaxValue(_milestones[level]);
+                UserInterfaceManager.instance.HideHP();
+                UserInterfaceManager.instance.HideLevel();
+                trapsGenerated = GenerateTraps();
+                enhancementsGenerated = GenerateEnhancements();
+                UserInterfaceManager.instance.GenerateLevelUpTraps(_trapsNames[trapsGenerated[0]], _trapsNames[trapsGenerated[1]], _trapsDescriptions[trapsGenerated[0]], _trapsDescriptions[trapsGenerated[1]]);
+                UserInterfaceManager.instance.GenerateLevelUpEnhancements(_enhancementsNames[enhancementsGenerated[0]], _enhancementsNames[enhancementsGenerated[1]], _enhancementsDescriptions[enhancementsGenerated[0]], _enhancementsDescriptions[enhancementsGenerated[1]]);
+                UserInterfaceManager.instance.OpenLevelUpTraps();
+            }
+            else
+            {
+                SceneManager.LoadScene("Victory");
+            }
         }
+    }
+
+    private void TutorialLevelUp()
+    {
+        ResetCursor();
+        Cursor.visible = true;
+        UserInterfaceManager.instance.ResetCorpsesCount();
+        UserInterfaceManager.instance.SetCorpsesMaxValue(_milestones[level]);
+        UserInterfaceManager.instance.HideHP();
+        UserInterfaceManager.instance.HideLevel();
+        trapsGenerated = GenerateTraps();
+        enhancementsGenerated = GenerateEnhancements();
+        UserInterfaceManager.instance.GenerateLevelUpTraps(_trapsNames[trapsGenerated[0]], _trapsNames[trapsGenerated[1]], _trapsDescriptions[trapsGenerated[0]], _trapsDescriptions[trapsGenerated[1]]);
+        UserInterfaceManager.instance.GenerateLevelUpEnhancements(_enhancementsNames[enhancementsGenerated[0]], _enhancementsNames[enhancementsGenerated[1]], _enhancementsDescriptions[enhancementsGenerated[0]], _enhancementsDescriptions[enhancementsGenerated[1]]);
+        UserInterfaceManager.instance.OpenLevelUpTraps();
     }
 
     public void FeedRoot()
@@ -332,6 +348,15 @@ public class GameManager : MonoBehaviour
         {
             corpses = 0;
             LevelUp();
+        }
+        if (tutorial)
+        {
+            if(currentDialogue == 1)
+            {
+                currentDialogue = 2;
+                _keyImage.SetActive(false);
+                nextDialogue = true;
+            }
         }
     }
 
@@ -347,7 +372,11 @@ public class GameManager : MonoBehaviour
         selectingTrap = false;
         nextDialogue = false;
         yield return new WaitUntil(() => nextDialogue == true);
+
         selectingTrap = true;
+        Cursor.visible = false;
+        _dialogues.transform.GetChild(0).gameObject.SetActive(false);
+        _objectives.transform.GetChild(0).gameObject.SetActive(false);
         yield return new WaitForSeconds(1);
         _dialogues.transform.GetChild(1).gameObject.SetActive(true);
         //parte audio
@@ -355,36 +384,58 @@ public class GameManager : MonoBehaviour
         _objectives.transform.GetChild(1).gameObject.SetActive(true);
         nextDialogue = false;
         yield return new WaitUntil(() => nextDialogue == true);
+
         _dialogues.transform.GetChild(1).gameObject.SetActive(false);
         _objectives.transform.GetChild(1).gameObject.SetActive(false);
         currentDialogue = 3;
         _dialogues.transform.GetChild(2).gameObject.SetActive(true);
         //parte audio
         yield return new WaitForSeconds(5);
-        _objectives.transform.GetChild(1).gameObject.SetActive(true);
+        selectingTrap = false;
+        Cursor.visible = true;
+        _objectives.transform.GetChild(2).gameObject.SetActive(true);
+        _tutorialSpawnPoint.SetActive(true);
+        SoundEffectsManager.instance.PlaySFXClip(_spawnPointAudio, (float)0.5);
+        TutorialHumanGenerator.readyToGenerate = true;
+        yield return new WaitUntil(() => TutorialHumanGenerator.kills == 3);
+        TutorialHumanGenerator.readyToGenerate = false;
         nextDialogue = false;
         yield return new WaitUntil(() => nextDialogue == true);
-        _dialogues.transform.GetChild(2).gameObject.SetActive(false);
-        _objectives.transform.GetChild(1).gameObject.SetActive(false);
+
+        UserInterfaceManager.instance.ResetCorpsesCount();
+        UserInterfaceManager.instance.SetCorpsesMaxValue(_milestones[level]);
+        GameObject[] remainingHumans = GameObject.FindGameObjectsWithTag("Tutorial Enemy");
+        GameObject[] remainingCorpses = GameObject.FindGameObjectsWithTag("Corpse");
+        foreach (var human in remainingHumans)
+        {
+            Destroy(human);
+        }
+        foreach (var corpse in remainingCorpses)
+        {
+            Destroy(corpse);
+        }
         currentDialogue = 4;
+        Cursor.visible = false;
+        _dialogues.transform.GetChild(2).gameObject.SetActive(false);
+        _objectives.transform.GetChild(2).gameObject.SetActive(false);
+        yield return new WaitForSeconds(1);
         _dialogues.transform.GetChild(3).gameObject.SetActive(true);
         //parte audio
         yield return new WaitForSeconds(5);
-        selectingTrap = false;
-        _keyImage.SetActive(true);
-        _objectives.transform.GetChild(2).gameObject.SetActive(true);
         nextDialogue = false;
+        _objectives.transform.GetChild(1).gameObject.SetActive(true);
         yield return new WaitUntil(() => nextDialogue == true);
+
         _dialogues.transform.GetChild(3).gameObject.SetActive(false);
-        _objectives.transform.GetChild(2).gameObject.SetActive(false);
+        _objectives.transform.GetChild(1).gameObject.SetActive(false);
         currentDialogue = 5;
-        yield return new WaitForSeconds(1);
         _dialogues.transform.GetChild(4).gameObject.SetActive(true);
         //parte audio
         yield return new WaitForSeconds(5);
         _objectives.transform.GetChild(1).gameObject.SetActive(true);
         nextDialogue = false;
         yield return new WaitUntil(() => nextDialogue == true);
+
         _dialogues.transform.GetChild(4).gameObject.SetActive(false);
         _objectives.transform.GetChild(1).gameObject.SetActive(false);
         currentDialogue = 6;
@@ -394,11 +445,55 @@ public class GameManager : MonoBehaviour
         _objectives.transform.GetChild(1).gameObject.SetActive(true);
         nextDialogue = false;
         yield return new WaitUntil(() => nextDialogue == true);
+
+        _tutorialUIBackground.SetActive(false);
         _dialogues.transform.GetChild(5).gameObject.SetActive(false);
         _objectives.transform.GetChild(1).gameObject.SetActive(false);
+        currentDialogue = 7;
+        nextDialogue = false;
+        TutorialLevelUp();
+        yield return new WaitUntil(() => nextDialogue == true);
+
+        selectingTrap = true;
+        Cursor.visible = false;
+        _tutorialUIBackground.SetActive(true);
+        _tutorialRoot.SetActive(false);
+        currentDialogue = 8;
+        yield return new WaitForSeconds(1);
+        _dialogues.transform.GetChild(6).gameObject.SetActive(true);
+        //parte audio
+        yield return new WaitForSeconds(5);
+        selectingTrap = false;
+        Cursor.visible = true;
+        _objectives.transform.GetChild(3).gameObject.SetActive(true);
+        nextDialogue = false;
+        _objectiveDirection.SetActive(true);
+        _battlegroundEntrance.SetActive(true);
+        yield return new WaitUntil(() => nextDialogue == true);
+
+        _dialogues.transform.GetChild(6).gameObject.SetActive(false);
+        _objectives.transform.GetChild(3).gameObject.SetActive(false);
+        selectingTrap = true;
+        Cursor.visible = false;
+        currentDialogue = 9;
+        yield return new WaitForSeconds(1);
+        _dialogues.transform.GetChild(7).gameObject.SetActive(true);
+        //parte audio
+        yield return new WaitForSeconds(5);
+        selectingTrap = false;
+        Cursor.visible = true;
+        _objectives.transform.GetChild(4).gameObject.SetActive(true);
+        nextDialogue = false;
+        yield return new WaitUntil(() => nextDialogue == true);
+
         _dialogueWall.SetActive(false);
         yield return new WaitForSeconds(1);
         tutorial = false;
         HumansGenerator.instance.LevelUp();
+    }
+
+    public void GoToNextDialogue()
+    {
+        nextDialogue = true;
     }
 }

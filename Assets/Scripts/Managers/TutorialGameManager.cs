@@ -31,6 +31,8 @@ public class TutorialGameManager : MonoBehaviour
 
     private void Start()
     {
+        TutorialHumanGenerator.readyToGenerate = false;
+        TutorialHumanGenerator.useCooldown = false;
         _startingCooldown = 1;
         startingTimer = 0;
         dialogueStarted = false;
@@ -124,9 +126,10 @@ public class TutorialGameManager : MonoBehaviour
         Cursor.visible = true;
         _dialogues.transform.GetChild(4).gameObject.SetActive(true);
         _keyImage.sprite = _clickSprite;
-        next = false;
+        TutorialHumanGenerator.kills = 0;
         TutorialHumanGenerator.readyToGenerate = true;
-        yield return new WaitUntil(() => next == true);
+        yield return new WaitUntil(() => TutorialHumanGenerator.kills == 1);
+        TutorialHumanGenerator.readyToGenerate = false;
         _dialogues.transform.GetChild(4).gameObject.SetActive(false);
         _corpse = GameObject.FindGameObjectWithTag("Corpse").GetComponent<CorpseInteraction>();
         next = false;

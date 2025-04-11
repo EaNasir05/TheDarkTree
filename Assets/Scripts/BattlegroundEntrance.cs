@@ -4,6 +4,7 @@ using UnityEngine;
 public class BattlegroundEntrance : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
+    [SerializeField] private GameObject _UIBackground;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -12,7 +13,9 @@ public class BattlegroundEntrance : MonoBehaviour
             collision.transform.position = new Vector2((float)-12.25, (float)-1.66);
             _camera.transform.position = new Vector3(0, 1, -15);
             _camera.orthographicSize = 11;
+            _UIBackground.SetActive(false);
             UserInterfaceManager.instance.ShowHP();
+            GameManager.instance.GoToNextDialogue();
         }
     }
 }
