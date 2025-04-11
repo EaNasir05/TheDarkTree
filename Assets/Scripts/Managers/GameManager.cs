@@ -166,7 +166,7 @@ public class GameManager : MonoBehaviour
             UserInterfaceManager.instance.CloseTrapsList();
             UserInterfaceManager.instance.DecreaseTrapsCount();
             UserInterfaceManager.instance.UpdateTrapsList(index, trapsAmounts[index]);
-            if (tutorial && currentDialogue == 4)
+            if (tutorial && currentDialogue == 9)
             {
                 nextDialogue = true;
             }
@@ -486,6 +486,44 @@ public class GameManager : MonoBehaviour
         nextDialogue = false;
         yield return new WaitUntil(() => nextDialogue == true);
 
+        _keyImage.SetActive(false);
+        _dialogues.transform.GetChild(7).gameObject.SetActive(false);
+        _objectives.transform.GetChild(4).gameObject.SetActive(false);
+        selectingTrap = true;
+        Cursor.visible = false;
+        currentDialogue = 10;
+        yield return new WaitForSeconds(1);
+        _dialogues.transform.GetChild(8).gameObject.SetActive(true);
+        //parte audio
+        yield return new WaitForSeconds(5);
+        _objectives.transform.GetChild(1).gameObject.SetActive(true);
+        nextDialogue = false;
+        yield return new WaitUntil(() => nextDialogue == true);
+
+        _dialogues.transform.GetChild(8).gameObject.SetActive(false);
+        _objectives.transform.GetChild(1).gameObject.SetActive(false);
+        currentDialogue = 11;
+        _dialogues.transform.GetChild(9).gameObject.SetActive(true);
+        //parte audio
+        yield return new WaitForSeconds(5);
+        _objectives.transform.GetChild(1).gameObject.SetActive(true);
+        nextDialogue = false;
+        yield return new WaitUntil(() => nextDialogue == true);
+
+        _dialogues.transform.GetChild(9).gameObject.SetActive(false);
+        _objectives.transform.GetChild(1).gameObject.SetActive(false);
+        currentDialogue = 12;
+        _dialogues.transform.GetChild(10).gameObject.SetActive(true);
+        //parte audio
+        yield return new WaitForSeconds(5);
+        _objectives.transform.GetChild(1).gameObject.SetActive(true);
+        nextDialogue = false;
+        yield return new WaitUntil(() => nextDialogue == true);
+
+        _dialogues.transform.GetChild(10).gameObject.SetActive(false);
+        _objectives.transform.GetChild(1).gameObject.SetActive(false);
+        selectingTrap = false;
+        Cursor.visible = true;
         _dialogueWall.SetActive(false);
         yield return new WaitForSeconds(1);
         tutorial = false;

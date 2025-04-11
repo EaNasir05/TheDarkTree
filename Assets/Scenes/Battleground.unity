@@ -9154,8 +9154,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Ricordati di nutrirmi con i cadaveri di quei miseri umani, solo cos\xEC
-    potr\xF2 riottenere i miei poteri."
+  m_text: "Ricordati di nutrirmi con i cadaveri di quei miseri umani.\nQuesta guerra
+    sar\xE0 vinta solo quando riavr\xF2 i miei poteri."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 49af4cf69d681f3499983514359b8f86, type: 2}
   m_sharedMaterial: {fileID: 7349638696784349729, guid: 49af4cf69d681f3499983514359b8f86, type: 2}
@@ -14738,7 +14738,7 @@ MonoBehaviour:
     Le trappole sono strumenti
     di difesa da collocare sulle mie radici.
 
-    Fanne buon uso...'
+    Scegli attentamente...'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 49af4cf69d681f3499983514359b8f86, type: 2}
   m_sharedMaterial: {fileID: 7349638696784349729, guid: 49af4cf69d681f3499983514359b8f86, type: 2}

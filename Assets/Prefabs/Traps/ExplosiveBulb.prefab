@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 421459226881794686}
   - component: {fileID: 4290678099085476898}
   - component: {fileID: 5370736439436669227}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ExplosiveBulb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
