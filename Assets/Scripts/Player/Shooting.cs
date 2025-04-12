@@ -40,22 +40,22 @@ public class Shooting : MonoBehaviour
                 fireballCooldown = (float)0.8;
                 break;
             case 2:
-                fireballCooldown = (float)0.6;
+                fireballCooldown = (float)0.666;
                 break;
             case 3:
-                fireballCooldown = (float)0.5;
+                fireballCooldown = (float)0.571;
                 break;
             case 4:
-                fireballCooldown = (float)0.4;
+                fireballCooldown = (float)0.5;
                 break;
             case 5:
-                fireballCooldown = (float)0.34;
+                fireballCooldown = (float)0.444;
                 break;
             case 6:
-                fireballCooldown = (float)0.3;
+                fireballCooldown = (float)0.4;
                 break;
             case 7:
-                fireballCooldown = (float)0.27;
+                fireballCooldown = (float)0.364;
                 break;
             default:
                 Debug.Log("INVALID FIRE RATE LEVEL");

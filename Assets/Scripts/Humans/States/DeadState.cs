@@ -36,6 +36,10 @@ public class DeadState : State
         }
         if (timer >= 20)
         {
+            if (human.gameObject == CorpseManager.instance.GetCorpse())
+            {
+                Cursor.visible = true;
+            }
             GameObject.Destroy(human.gameObject);
         }
     }

@@ -19,21 +19,27 @@ public class Root : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && interactable && !GameManager.pause && !GameManager.selectingTrap)
+        if (interactable && !GameManager.pause && !GameManager.selectingTrap)
         {
-            if (CorpseManager.instance.GetCorpse() != null)
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                Cursor.visible = true;
-                GameManager.instance.FeedRoot();
-                CorpseManager.instance.DeleteCorpse();
-                if (trap != null)
+                if (CorpseManager.instance.GetCorpse() != null)
                 {
-                    _spriteRenderer.sprite = _standardSprite;
+                    Cursor.visible = true;
+                    GameManager.instance.FeedRoot();
+                    CorpseManager.instance.DeleteCorpse();
+                    if (trap != null)
+                    {
+                        _spriteRenderer.sprite = _standardSprite;
+                    }
                 }
             }
-            else if (trap == null)
+            if (Input.GetKeyDown(KeyCode.Q))
             {
-                GameManager.instance.RootInteraction(gameObject);
+                if (trap == null && CorpseManager.instance.GetCorpse() == null)
+                {
+                    GameManager.instance.RootInteraction(gameObject);
+                }
             }
         }
     }

@@ -18,6 +18,10 @@ public class Movement : MonoBehaviour
     private void Update()
     {
         //cambia direzione sprite PG se si muove lateralmente
+        if (GameManager.pause || GameManager.selectingTrap)
+        {
+            _rb.linearVelocity = new Vector2(0,0);
+        }
     }
 
     private void FixedUpdate()

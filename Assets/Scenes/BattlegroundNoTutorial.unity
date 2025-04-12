@@ -10879,6 +10879,8 @@ MonoBehaviour:
   - {fileID: 1774034542}
   - {fileID: 1753933739}
   _keyImage: {fileID: 0}
+  _eKeySprite: {fileID: 0}
+  _qKeySprite: {fileID: 0}
   _dialogueWall: {fileID: 0}
   _tutorialRoot: {fileID: 0}
   _tutorialSpawnPoint: {fileID: 0}
@@ -13598,7 +13600,7 @@ MonoBehaviour:
   _fireball: {fileID: 3803478608432539980, guid: 31db126c7622ca04597385e59abd8e87, type: 3}
   _fireballSpawnPoint: {fileID: 1058406285}
   fireballCooldown: 0.8
-  fireballDamage: 5
+  fireballDamage: 6
   fireballSpeed: 10
   fireballSize: 0.5
   _fireballAudio: {fileID: 8300000, guid: daebaad1feaed5940994372d061e88b4, type: 3}

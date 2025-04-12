@@ -6,12 +6,19 @@ public class Brambles : MonoBehaviour
 {
     private bool playerInBrambles = false;
     private List<Human> humansInBramble = new List<Human>();
+    private SpriteRenderer _spriteRenderer;
+
+    private void Awake()
+    {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             playerInBrambles = true;
+            _spriteRenderer.color = new Color((float)0.1, (float)0.374, (float)0.141);
             foreach (Human human in humansInBramble)
             {
                 human.SetInsideBrambles(true);
@@ -33,7 +40,8 @@ public class Brambles : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             playerInBrambles = false;
-            foreach(Human human in humansInBramble)
+            _spriteRenderer.color = new Color((float)0.115, (float)0.306, (float)0.147);
+            foreach (Human human in humansInBramble)
             {
                 human.SetInsideBrambles(false);
             }

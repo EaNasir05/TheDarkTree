@@ -55,6 +55,8 @@ public class GameManager : MonoBehaviour
     private int[] trapsGenerated;
     private int[] enhancementsGenerated;
     [SerializeField] private GameObject _keyImage;
+    [SerializeField] private Sprite _eKeySprite;
+    [SerializeField] private Sprite _qKeySprite;
     [SerializeField] private GameObject _dialogueWall;
     [SerializeField] private GameObject _tutorialRoot;
     [SerializeField] private GameObject _tutorialSpawnPoint;
@@ -104,7 +106,7 @@ public class GameManager : MonoBehaviour
         {
             pause = !pause;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && tutorial && (currentDialogue == 2 || currentDialogue == 4 || currentDialogue == 5 || currentDialogue == 6 || currentDialogue == 8 || currentDialogue == 10 || currentDialogue == 11 || currentDialogue == 12))
+        if (Input.GetKeyDown(KeyCode.Space) && tutorial && (currentDialogue == 2 || currentDialogue == 4 || currentDialogue == 5 || currentDialogue == 6 || currentDialogue == 10 || currentDialogue == 11 || currentDialogue == 12))
         {
             if (!nextDialogue)
             {
@@ -363,11 +365,12 @@ public class GameManager : MonoBehaviour
     private IEnumerator StartDialogue()
     {
         selectingTrap = true;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds((float)0.5);
         currentDialogue = 1;
         _dialogues.transform.GetChild(0).gameObject.SetActive(true);
         //parte audio
-        yield return new WaitForSeconds(5);
+        _keyImage.GetComponent<SpriteRenderer>().sprite = _eKeySprite;
+        yield return new WaitForSeconds(3);
         _objectives.transform.GetChild(0).gameObject.SetActive(true);
         selectingTrap = false;
         nextDialogue = false;
@@ -377,10 +380,10 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
         _dialogues.transform.GetChild(0).gameObject.SetActive(false);
         _objectives.transform.GetChild(0).gameObject.SetActive(false);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds((float)0.5);
         _dialogues.transform.GetChild(1).gameObject.SetActive(true);
         //parte audio
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         _objectives.transform.GetChild(1).gameObject.SetActive(true);
         nextDialogue = false;
         yield return new WaitUntil(() => nextDialogue == true);
@@ -390,18 +393,19 @@ public class GameManager : MonoBehaviour
         currentDialogue = 3;
         _dialogues.transform.GetChild(2).gameObject.SetActive(true);
         //parte audio
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         selectingTrap = false;
         Cursor.visible = true;
         _objectives.transform.GetChild(2).gameObject.SetActive(true);
         _tutorialSpawnPoint.SetActive(true);
         SoundEffectsManager.instance.PlaySFXClip(_spawnPointAudio, (float)0.5);
         TutorialHumanGenerator.readyToGenerate = true;
-        yield return new WaitUntil(() => TutorialHumanGenerator.kills == 3);
-        TutorialHumanGenerator.readyToGenerate = false;
+        //yield return new WaitUntil(() => TutorialHumanGenerator.kills == 3);
+        //TutorialHumanGenerator.readyToGenerate = false;
         nextDialogue = false;
         yield return new WaitUntil(() => nextDialogue == true);
 
+        TutorialHumanGenerator.readyToGenerate = false;
         UserInterfaceManager.instance.ResetCorpsesCount();
         UserInterfaceManager.instance.SetCorpsesMaxValue(_milestones[level]);
         GameObject[] remainingHumans = GameObject.FindGameObjectsWithTag("Tutorial Enemy");
@@ -418,10 +422,10 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
         _dialogues.transform.GetChild(2).gameObject.SetActive(false);
         _objectives.transform.GetChild(2).gameObject.SetActive(false);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds((float)0.5);
         _dialogues.transform.GetChild(3).gameObject.SetActive(true);
         //parte audio
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         nextDialogue = false;
         _objectives.transform.GetChild(1).gameObject.SetActive(true);
         yield return new WaitUntil(() => nextDialogue == true);
@@ -431,7 +435,7 @@ public class GameManager : MonoBehaviour
         currentDialogue = 5;
         _dialogues.transform.GetChild(4).gameObject.SetActive(true);
         //parte audio
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         _objectives.transform.GetChild(1).gameObject.SetActive(true);
         nextDialogue = false;
         yield return new WaitUntil(() => nextDialogue == true);
@@ -441,7 +445,7 @@ public class GameManager : MonoBehaviour
         currentDialogue = 6;
         _dialogues.transform.GetChild(5).gameObject.SetActive(true);
         //parte audio
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         _objectives.transform.GetChild(1).gameObject.SetActive(true);
         nextDialogue = false;
         yield return new WaitUntil(() => nextDialogue == true);
@@ -459,10 +463,10 @@ public class GameManager : MonoBehaviour
         _tutorialUIBackground.SetActive(true);
         _tutorialRoot.SetActive(false);
         currentDialogue = 8;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds((float)0.5);
         _dialogues.transform.GetChild(6).gameObject.SetActive(true);
         //parte audio
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         selectingTrap = false;
         Cursor.visible = true;
         _objectives.transform.GetChild(3).gameObject.SetActive(true);
@@ -476,10 +480,11 @@ public class GameManager : MonoBehaviour
         selectingTrap = true;
         Cursor.visible = false;
         currentDialogue = 9;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds((float)0.5);
         _dialogues.transform.GetChild(7).gameObject.SetActive(true);
         //parte audio
-        yield return new WaitForSeconds(5);
+        _keyImage.GetComponent<SpriteRenderer>().sprite = _qKeySprite;
+        yield return new WaitForSeconds(3);
         selectingTrap = false;
         Cursor.visible = true;
         _objectives.transform.GetChild(4).gameObject.SetActive(true);
@@ -492,10 +497,10 @@ public class GameManager : MonoBehaviour
         selectingTrap = true;
         Cursor.visible = false;
         currentDialogue = 10;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds((float)0.5);
         _dialogues.transform.GetChild(8).gameObject.SetActive(true);
         //parte audio
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         _objectives.transform.GetChild(1).gameObject.SetActive(true);
         nextDialogue = false;
         yield return new WaitUntil(() => nextDialogue == true);
@@ -505,7 +510,7 @@ public class GameManager : MonoBehaviour
         currentDialogue = 11;
         _dialogues.transform.GetChild(9).gameObject.SetActive(true);
         //parte audio
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         _objectives.transform.GetChild(1).gameObject.SetActive(true);
         nextDialogue = false;
         yield return new WaitUntil(() => nextDialogue == true);
@@ -515,7 +520,7 @@ public class GameManager : MonoBehaviour
         currentDialogue = 12;
         _dialogues.transform.GetChild(10).gameObject.SetActive(true);
         //parte audio
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         _objectives.transform.GetChild(1).gameObject.SetActive(true);
         nextDialogue = false;
         yield return new WaitUntil(() => nextDialogue == true);
