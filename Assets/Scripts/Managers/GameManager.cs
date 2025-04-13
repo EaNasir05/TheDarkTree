@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _tutorialUIBackground;
     private GameObject _dialogues;
     private GameObject _objectives;
+    private GameObject _examples;
     private int currentDialogue;
     private bool nextDialogue;
     [SerializeField] private AudioClip[] _feedRootAudio;
@@ -92,6 +93,7 @@ public class GameManager : MonoBehaviour
             Cursor.visible = false;
             _dialogues = GameObject.FindGameObjectWithTag("Dialogues");
             _objectives = GameObject.FindGameObjectWithTag("Objectives");
+            _examples = GameObject.FindGameObjectWithTag("Examples");
             currentDialogue = 0;
             nextDialogue = false;
             StartCoroutine("StartDialogue");
@@ -372,6 +374,7 @@ public class GameManager : MonoBehaviour
         _keyImage.GetComponent<SpriteRenderer>().sprite = _eKeySprite;
         yield return new WaitForSeconds(3);
         _objectives.transform.GetChild(0).gameObject.SetActive(true);
+        _examples.transform.GetChild(0).gameObject.SetActive(true);
         selectingTrap = false;
         nextDialogue = false;
         yield return new WaitUntil(() => nextDialogue == true);
@@ -380,6 +383,7 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
         _dialogues.transform.GetChild(0).gameObject.SetActive(false);
         _objectives.transform.GetChild(0).gameObject.SetActive(false);
+        _examples.transform.GetChild(0).gameObject.SetActive(false);
         yield return new WaitForSeconds((float)0.5);
         _dialogues.transform.GetChild(1).gameObject.SetActive(true);
         //parte audio
@@ -397,6 +401,7 @@ public class GameManager : MonoBehaviour
         selectingTrap = false;
         Cursor.visible = true;
         _objectives.transform.GetChild(2).gameObject.SetActive(true);
+        _examples.transform.GetChild(1).gameObject.SetActive(true);
         _tutorialSpawnPoint.SetActive(true);
         SoundEffectsManager.instance.PlaySFXClip(_spawnPointAudio, (float)0.5);
         TutorialHumanGenerator.readyToGenerate = true;
@@ -422,6 +427,7 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
         _dialogues.transform.GetChild(2).gameObject.SetActive(false);
         _objectives.transform.GetChild(2).gameObject.SetActive(false);
+        _examples.transform.GetChild(1).gameObject.SetActive(false);
         yield return new WaitForSeconds((float)0.5);
         _dialogues.transform.GetChild(3).gameObject.SetActive(true);
         //parte audio
@@ -488,17 +494,20 @@ public class GameManager : MonoBehaviour
         selectingTrap = false;
         Cursor.visible = true;
         _objectives.transform.GetChild(4).gameObject.SetActive(true);
+        _examples.transform.GetChild(2).gameObject.SetActive(true);
         nextDialogue = false;
         yield return new WaitUntil(() => nextDialogue == true);
 
         _keyImage.SetActive(false);
         _dialogues.transform.GetChild(7).gameObject.SetActive(false);
         _objectives.transform.GetChild(4).gameObject.SetActive(false);
+        _examples.transform.GetChild(2).gameObject.SetActive(false);
         selectingTrap = true;
         Cursor.visible = false;
         currentDialogue = 10;
         yield return new WaitForSeconds((float)0.5);
         _dialogues.transform.GetChild(8).gameObject.SetActive(true);
+        _examples.transform.GetChild(3).gameObject.SetActive(true);
         //parte audio
         yield return new WaitForSeconds(3);
         _objectives.transform.GetChild(1).gameObject.SetActive(true);
@@ -517,8 +526,10 @@ public class GameManager : MonoBehaviour
 
         _dialogues.transform.GetChild(9).gameObject.SetActive(false);
         _objectives.transform.GetChild(1).gameObject.SetActive(false);
+        _examples.transform.GetChild(3).gameObject.SetActive(false);
         currentDialogue = 12;
         _dialogues.transform.GetChild(10).gameObject.SetActive(true);
+        _examples.transform.GetChild(4).gameObject.SetActive(true);
         //parte audio
         yield return new WaitForSeconds(3);
         _objectives.transform.GetChild(1).gameObject.SetActive(true);
@@ -527,6 +538,7 @@ public class GameManager : MonoBehaviour
 
         _dialogues.transform.GetChild(10).gameObject.SetActive(false);
         _objectives.transform.GetChild(1).gameObject.SetActive(false);
+        _examples.transform.GetChild(4).gameObject.SetActive(false);
         selectingTrap = false;
         Cursor.visible = true;
         _dialogueWall.SetActive(false);

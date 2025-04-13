@@ -5,6 +5,7 @@ public class TutorialGameManager : MonoBehaviour
 {
     public static TutorialGameManager instance;
     [SerializeField] private GameObject _dialogues;
+    [SerializeField] private GameObject _examples;
     [SerializeField] private GameObject _objectiveDirection;
     [SerializeField] private GameObject _exit;
     [SerializeField] private SpriteRenderer _keyImage;
@@ -126,6 +127,7 @@ public class TutorialGameManager : MonoBehaviour
         GameManager.selectingTrap = false;
         Cursor.visible = true;
         _dialogues.transform.GetChild(4).gameObject.SetActive(true);
+        _examples.transform.GetChild(0).gameObject.SetActive(true);
         _keyImage.sprite = _clickSprite;
         TutorialHumanGenerator.kills = 0;
         TutorialHumanGenerator.readyToGenerate = true;
@@ -133,6 +135,7 @@ public class TutorialGameManager : MonoBehaviour
 
         TutorialHumanGenerator.readyToGenerate = false;
         _dialogues.transform.GetChild(4).gameObject.SetActive(false);
+        _examples.transform.GetChild(0).gameObject.SetActive(false);
         _corpse = GameObject.FindGameObjectWithTag("Corpse").GetComponent<CorpseInteraction>();
         next = false;
         currentDialogue = 4;
@@ -145,6 +148,7 @@ public class TutorialGameManager : MonoBehaviour
         canGo = true;
         _keyImage.sprite = _wasdSprite;
         _dialogues.transform.GetChild(5).gameObject.SetActive(true);
+        _examples.transform.GetChild(1).gameObject.SetActive(true);
         yield return new WaitUntil(() => (next == true && canGo));
         _objectiveDirection.SetActive(true);
         _exit.SetActive(true);

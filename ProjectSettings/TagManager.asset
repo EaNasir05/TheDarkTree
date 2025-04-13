@@ -13,6 +13,7 @@ TagManager:
   - Dialogues
   - Tree
   - Objectives
+  - Examples
   layers:
   - Default
   - TransparentFX
