@@ -613,6 +613,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dialogues: {fileID: 824332414}
   _examples: {fileID: 2102742398}
+  _dialoguesAudios:
+  - {fileID: 8300000, guid: 9ac0030763f93ca49b655061567c80f6, type: 3}
+  - {fileID: 8300000, guid: 0f687755e3e80474cb04e97c553ddc9b, type: 3}
+  - {fileID: 8300000, guid: 13ba46e18809a014d9fb4ea7ea6c0547, type: 3}
   _objectiveDirection: {fileID: 713623142}
   _exit: {fileID: 808832235}
   _keyImage: {fileID: 680793819}
@@ -2622,8 +2626,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Ottimo. Ora, prendi quel corpo e portamelo.\nPresto, prima che arrivi
-    il resto dell\u2019esercito!"
+  m_text: Ottimo lavoro. Adesso prendi quel corpo e portamelo.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 49af4cf69d681f3499983514359b8f86, type: 2}
   m_sharedMaterial: {fileID: 7349638696784349729, guid: 49af4cf69d681f3499983514359b8f86, type: 2}
@@ -3991,7 +3994,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Gli umani si avvicinano. Illusi... credono di potermi fermare.\nMa sar\xE0
-    proprio il loro sangue a spezzare le mie catene."
+    il loro stesso sangue a spezzare le mie catene."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 49af4cf69d681f3499983514359b8f86, type: 2}
   m_sharedMaterial: {fileID: 7349638696784349729, guid: 49af4cf69d681f3499983514359b8f86, type: 2}

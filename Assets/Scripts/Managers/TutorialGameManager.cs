@@ -6,6 +6,7 @@ public class TutorialGameManager : MonoBehaviour
     public static TutorialGameManager instance;
     [SerializeField] private GameObject _dialogues;
     [SerializeField] private GameObject _examples;
+    [SerializeField] private AudioClip[] _dialoguesAudios;
     [SerializeField] private GameObject _objectiveDirection;
     [SerializeField] private GameObject _exit;
     [SerializeField] private SpriteRenderer _keyImage;
@@ -112,8 +113,8 @@ public class TutorialGameManager : MonoBehaviour
     {
         currentDialogue = 1;
         _dialogues.transform.GetChild(0).gameObject.SetActive(true);
-        //parte audio
-        yield return new WaitForSeconds(3);
+        SoundEffectsManager.instance.PlayDialogue(_dialoguesAudios[0], 1);
+        yield return new WaitForSeconds(_dialoguesAudios[0].length);
         _dialogues.transform.GetChild(3).gameObject.SetActive(true);
         next = false;
         yield return new WaitUntil(() => next == true);
@@ -122,8 +123,8 @@ public class TutorialGameManager : MonoBehaviour
         currentDialogue = 3;
         _dialogues.transform.GetChild(0).gameObject.SetActive(false);
         _dialogues.transform.GetChild(1).gameObject.SetActive(true);
-        //parte audio
-        yield return new WaitForSeconds(3);
+        SoundEffectsManager.instance.PlayDialogue(_dialoguesAudios[1], 1);
+        yield return new WaitForSeconds(_dialoguesAudios[1].length);
         GameManager.selectingTrap = false;
         Cursor.visible = true;
         _dialogues.transform.GetChild(4).gameObject.SetActive(true);
@@ -142,8 +143,8 @@ public class TutorialGameManager : MonoBehaviour
         _dialogues.transform.GetChild(1).gameObject.SetActive(false);
         yield return new WaitForSeconds((float)0.5);
         _dialogues.transform.GetChild(2).gameObject.SetActive(true);
-        //parte audio
-        yield return new WaitForSeconds(3);
+        SoundEffectsManager.instance.PlayDialogue(_dialoguesAudios[2], 1);
+        yield return new WaitForSeconds(_dialoguesAudios[2].length);
         moved = false;
         canGo = true;
         _keyImage.sprite = _wasdSprite;

@@ -7095,10 +7095,22 @@ MonoBehaviour:
   _battlegroundEntrance: {fileID: 1217861296}
   _objectiveDirection: {fileID: 531631668}
   _tutorialUIBackground: {fileID: 844219947}
+  _dialoguesAudios:
+  - {fileID: 8300000, guid: 5ae0f875b6d35fc4a901e9276a7645ab, type: 3}
+  - {fileID: 8300000, guid: 41c146885ec2433489be4a7e071a98d5, type: 3}
+  - {fileID: 8300000, guid: 0683dc20854ac5b4da21f6b8fad4052f, type: 3}
+  - {fileID: 8300000, guid: 87b540a6d23f398489707c8673a888c0, type: 3}
+  - {fileID: 8300000, guid: 267c41100f343a24caa263011271125d, type: 3}
+  - {fileID: 8300000, guid: c01e03cf4b2bec7448535f45f2bee970, type: 3}
+  - {fileID: 8300000, guid: 1b3661de482e0524caae86171dc61da8, type: 3}
+  - {fileID: 8300000, guid: 7f5d035e8421a0e4faebbf7c879edbc4, type: 3}
+  - {fileID: 8300000, guid: d92eb449303f8ea489f49611f662c160, type: 3}
+  - {fileID: 8300000, guid: 6044e08fb42f61f4d969bb9aa18569df, type: 3}
+  - {fileID: 8300000, guid: ca5608c1bb292fe41890e07c1e714339, type: 3}
   _feedRootAudio:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 5caccb1ea2570f9498929b0489aa03d0, type: 3}
+  - {fileID: 8300000, guid: 14e3b028f8ce26f4baa8cdc32fbe4ec5, type: 3}
+  - {fileID: 8300000, guid: 79f643b5a1eedb845bdde84bfc95f8ee, type: 3}
   _treeDamagedAudio: {fileID: 8300000, guid: b23df56490cb73e4ba4cbfebbbf09d39, type: 3}
   _levelUpAudio: {fileID: 8300000, guid: 469007bc3b486d046a36a59f460372ef, type: 3}
   _spawnPointAudio: {fileID: 8300000, guid: 6944db8694550ab438963864b6f8504a, type: 3}
@@ -9568,7 +9580,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Ricordati di nutrirmi con i cadaveri di quei miseri umani.\nQuesta guerra
+  m_text: "Continua a nutrirmi con i cadaveri di quei miseri umani.\nQuesta guerra
     sar\xE0 vinta solo quando riavr\xF2 i miei poteri."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 49af4cf69d681f3499983514359b8f86, type: 2}
@@ -27573,7 +27585,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Se dovessero infliggermi troppo danno in questa forma,\nsar\xF2 esiliato
-    dal mondo dei vivi per altri secoli."
+    dal mondo dei vivi per altri secoli.\nvedi di non farlo accadere..."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 49af4cf69d681f3499983514359b8f86, type: 2}
   m_sharedMaterial: {fileID: 7349638696784349729, guid: 49af4cf69d681f3499983514359b8f86, type: 2}
@@ -30331,7 +30343,7 @@ MonoBehaviour:
   - {fileID: 408882697}
   - {fileID: 276678759}
   spawnCooldown: 5
-  _hordesPower: 00000000010000000200000002000000030000000200000003000000030000000400000004000000
+  _hordesPower: 00000000010000000200000002000000030000000300000003000000040000000400000005000000
   _humansPrefabs:
   - {fileID: 1395047181644495603, guid: 35abc94eb515e144090efe1d425b8cd5, type: 3}
   - {fileID: 3602223772503417564, guid: 55c7c61c0af937d42af19b79b630f7b0, type: 3}

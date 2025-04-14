@@ -139,6 +139,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 8622368370212007598}
   buffCooldown: 15
-  buffDuration: 4
+  buffDuration: 6
   _spriteRenderer: {fileID: 5352267805029072169}
   _activationAudio: {fileID: 8300000, guid: 391d4cb4066e4d34b98ed3a0ad651851, type: 3}

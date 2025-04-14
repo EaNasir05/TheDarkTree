@@ -57,7 +57,7 @@ public class Human : MonoBehaviour
         if (insideBrambles && !GameManager.pause)
         {
             bramblesAttackCooldown += Time.deltaTime;
-            if (bramblesAttackCooldown >= 0.5)
+            if (bramblesAttackCooldown >= 0.75)
             {
                 DecreaseHealth(1);
                 bramblesAttackCooldown = 0;

@@ -47,6 +47,7 @@ public class SoundEffectsManager : MonoBehaviour
         if (clip != null)
         {
             AudioSource newSource = Instantiate(soundEffectObject, Vector3.zero, Quaternion.identity);
+            currentDialogue = newSource;
             newSource.clip = clip;
             newSource.volume = volume;
             newSource.Play();
@@ -63,6 +64,7 @@ public class SoundEffectsManager : MonoBehaviour
         if (currentDialogue == null)
         {
             AudioSource newSource = Instantiate(soundEffectObject, Vector3.zero, Quaternion.identity);
+            currentDialogue = newSource;
             newSource.clip = clip;
             newSource.volume = volume;
             newSource.Play();

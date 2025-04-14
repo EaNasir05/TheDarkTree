@@ -6634,7 +6634,7 @@ MonoBehaviour:
   - {fileID: 1494190595}
   - {fileID: 2122662790}
   spawnCooldown: 5
-  _hordesPower: 00000000010000000200000002000000030000000200000003000000030000000400000004000000
+  _hordesPower: 00000000010000000200000002000000030000000300000003000000040000000400000005000000
   _humansPrefabs:
   - {fileID: 1395047181644495603, guid: 35abc94eb515e144090efe1d425b8cd5, type: 3}
   - {fileID: 3602223772503417564, guid: 55c7c61c0af937d42af19b79b630f7b0, type: 3}
@@ -10887,7 +10887,11 @@ MonoBehaviour:
   _battlegroundEntrance: {fileID: 0}
   _objectiveDirection: {fileID: 0}
   _tutorialUIBackground: {fileID: 0}
-  _feedRootAudio: []
+  _dialoguesAudios: []
+  _feedRootAudio:
+  - {fileID: 8300000, guid: 5caccb1ea2570f9498929b0489aa03d0, type: 3}
+  - {fileID: 8300000, guid: 14e3b028f8ce26f4baa8cdc32fbe4ec5, type: 3}
+  - {fileID: 8300000, guid: 79f643b5a1eedb845bdde84bfc95f8ee, type: 3}
   _treeDamagedAudio: {fileID: 8300000, guid: b23df56490cb73e4ba4cbfebbbf09d39, type: 3}
   _levelUpAudio: {fileID: 8300000, guid: 469007bc3b486d046a36a59f460372ef, type: 3}
   _spawnPointAudio: {fileID: 0}
